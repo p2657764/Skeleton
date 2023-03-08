@@ -10,7 +10,7 @@ namespace Testing2
         [TestMethod]
         public void InstanceOK()
         {
-            clsStaff staff = new clsStaff();
+            ClsStaff staff = new ClsStaff();
 
             Assert.IsNotNull(staff);
         }
@@ -18,19 +18,19 @@ namespace Testing2
         [TestMethod]
         public void ActivePropertyOK()
         {
-            clsStaff staff = new clsStaff();
+            ClsStaff staff = new ClsStaff();
 
             Boolean TestData = true;
 
             staff.Active = TestData;
 
             Assert.AreEqual(staff.Active, TestData);
-           }
+        }
 
         [TestMethod]
         public void DateAddedPropertyOK()
         {
-            clsStaff staff = new clsStaff();
+            ClsStaff staff = new ClsStaff();
 
             DateTime TestData = DateTime.Now.Date;
 
@@ -41,7 +41,7 @@ namespace Testing2
         [TestMethod]
         public void NamePropertyOK()
         {
-            clsStaff staff = new clsStaff();
+            ClsStaff staff = new ClsStaff();
 
             string TestData = "Dale Brannigan";
 
@@ -54,7 +54,7 @@ namespace Testing2
         [TestMethod]
         public void DepartmentPropertyOK()
         {
-            clsStaff staff = new clsStaff();
+            ClsStaff staff = new ClsStaff();
 
             string TestData = "Managment";
 
@@ -62,7 +62,33 @@ namespace Testing2
 
             Assert.AreEqual(staff.Department, TestData);
         }
-        
+
+        [TestMethod]
+
+        public void WagePropertyOK()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Int32 TestData = 100;
+
+            staff.Wage = TestData;
+
+            Assert.AreEqual(staff.Wage, TestData);
+
+        }
+
+        [TestMethod]
+        public void UpdateCataloguePropertyOK()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Boolean TestData = true;
+
+            staff.UpdateCatalogue = TestData;
+
+            Assert.AreEqual(staff.UpdateCatalogue, TestData);
+
         }
     }
+}
 
