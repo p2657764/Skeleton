@@ -1,8 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using ClassLibrary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using ClassLibrary;
-using NUnit.Framework;
-using Assert = NUnit.Framework.Assert;
 
 namespace Testing1
 {
