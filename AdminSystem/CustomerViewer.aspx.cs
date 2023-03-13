@@ -12,7 +12,7 @@ public partial class _1Viewer : System.Web.UI.Page
     {
         clsCustomer ACustomer = new clsCustomer();
         ACustomer = (clsCustomer)Session["ACustomer"];
-        string NewLine = ("\r\n");
+        string NewLine = ("\n");
         Response.Write(ACustomer.CustomerName + NewLine);
         Response.Write(ACustomer.AddressLine1 + NewLine);
         Response.Write(ACustomer.PostCode + NewLine);
