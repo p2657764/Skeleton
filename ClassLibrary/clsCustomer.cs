@@ -135,18 +135,34 @@ namespace ClassLibrary
             return "";
         }
 
-        public bool Find(int AddressNo)
+        public bool Find(int CustomerID)
         {
-            //set the private data members to the test data value
-            mCustomerID = 14;
-            mCustomerName = "Test Name";
-            mAddressLine1 = "TestAddressLine";
-            mPostCode = "TestPostCode";
-            mEmailAddress = "TestEmailAddress";
-            mEmailVerification = true;
-            mAccountCreationDate = Convert.ToDateTime("15/07/2003");
-            //always return true
-            return true;
+            //create instance of data connection
+            clsDataConnection DB = new clsDataConnection();
+            //add parameter for customer ID to search for
+            DB.AddParameter("@CustomerID", CustomerID);
+            //execute stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByCustomerID");
+            //if one record is found
+            if (DB.Count == 1)
+            {
+                //copy data from database to private data members
+                mCustomerID = Convert.ToInt32(DB.DataTable.Rows[0]["CustomerID"]);
+                mCustomerName = Convert.ToString(DB.DataTable.Rows[0]["CustomerName"]);
+                mAddressLine1 = Convert.ToString(DB.DataTable.Rows[0]["AddressLine1"]);
+                mPostCode = Convert.ToString(DB.DataTable.Rows[0]["PostCode"]);
+                mEmailAddress = Convert.ToString(DB.DataTable.Rows[0]["EmailAddress"]);
+                mEmailVerification = Convert.ToBoolean(DB.DataTable.Rows[0]["EmailVerification"]);
+                mAccountCreationDate = Convert.ToDateTime(DB.DataTable.Rows[0]["AccountCreationDate"]);
+                //return worked
+                return true;
+            }
+            //if no record found
+            else
+            {
+                //return false (problem) 
+                return false;
+            }
         }
 
     }
