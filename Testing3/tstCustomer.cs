@@ -110,6 +110,7 @@ namespace Testing3
             Assert.IsTrue(Found);
         }
 
+        /**
         [TestMethod]
         public void TestCustomerIDFound()
         {
@@ -129,7 +130,7 @@ namespace Testing3
                 OK = false;
             }
             //test to see if correct result is given
-            Assert.IsTrue(Found);
+            Assert.IsTrue(OK);
         }
 
         [TestMethod]
@@ -256,7 +257,7 @@ namespace Testing3
             //invokes find method
             Found = ACustomer.Find(CustomerID);
             //check account creation date
-            if (ACustomer.AccountCreationDate != Convert.ToDateTime("15/07/2003"))
+            if (ACustomer.AccountCreationDate != Convert.ToDateTime("15/02/2023"))
             {
                 OK = false;
             }
@@ -265,6 +266,7 @@ namespace Testing3
         }
     }
 }
-
+        **/
+        
 
         

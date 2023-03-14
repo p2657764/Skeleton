@@ -11,6 +11,7 @@
         <div style="height: 202px">
             <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID" Width="150px"></asp:Label>
             <asp:TextBox ID="txtCustomerID" runat="server" ClientIDMode="AutoID" Width="200px"></asp:TextBox>
+            <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
             <br />
             <asp:Label ID="lblCustomerName" runat="server" Text="Customer Name" width="150px"></asp:Label>
             <asp:TextBox ID="txtCustomerName" runat="server" Width="200px"></asp:TextBox>
