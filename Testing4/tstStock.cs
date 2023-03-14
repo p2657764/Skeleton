@@ -15,5 +15,83 @@ namespace Testing4
             //test to see that it exists
             Assert.IsNotNull(Stock);
         }
+
+        [TestMethod]
+        public void InStockOK()
+        {
+            //create an instance of the class we want to create
+            clsStock Stock = new clsStock();
+            //create some test data
+            Boolean TestData = true;
+            //assign the data to assign to the sofa
+            Stock.Active = TestData;
+            //test to see if the two values are the same
+            Assert.AreEqual(Stock.Active, TestData);    
+        }
+
+        [TestMethod]    
+        public void DateGeneratedStockOK()
+        {
+            //create an instance of the class we want to create
+            clsStock Stock = new clsStock();
+            //create some test data to assign to the sofa
+            DateTime TestData = DateTime.Now.Date;
+            //assign the data to the property
+            Stock.DateAdded = TestData
+            //test to see if the two values are the same
+            Assert.AreEqual(Stock.DateAdded, TestData);
+        }
+
+        [TestMethod]
+        public void StockQuantityOK()
+        {
+            //create an instance of the class we want to create
+            clsStock Stock = new clsStock();
+            //create some test data
+            Int32 TestData = 1;
+            //assign the data to assign to the sofa
+            Stock.StockNo = TestData;
+            //test to see if the two values are the same
+            Assert.AreEqual(Stock.StockNo, TestData);
+        }
+
+        [TestMethod]
+        public void UnitPriceOK()
+        {
+            //create an instance of the class we want to create
+            clsStock Stock = new clsStock();
+            //create some test data
+            Int32 TestData = 2;
+            //assign the data to assign to the sofa
+            Stock.UnitPrice = TestData;
+            //test to see if the two values are the same
+            Assert.AreEqual(Stock.UnitPrice, TestData);
+        }
+
+        [TestMethod]
+        public void ColourOK()
+        {
+            //create an instance of the class we want to create
+            clsStock Stock = new clsStock();
+            //create some test data
+            string TestData = "Blue";
+            //assign the data to assign to the sofa
+            Stock.StockColour = TestData;
+            //test to see if the two values are the same
+            Assert.AreEqual(Stock.StockColour, TestData);
+        }
+
+        [TestMethod]
+        public void StockNameOK()
+        {
+            //create an instance of the class we want to create
+            clsStock Stock = new clsStock();
+            //create some test data
+            string TestData = "Harrison 2 Seater Sofa";
+            //assign the data to assign to the sofa
+            Stock.StockName = TestData;
+            //test to see if the two values are the same
+            Assert.AreEqual(Stock.StockName, TestData);
+        }
     }
 }
