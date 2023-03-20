@@ -29,7 +29,7 @@ namespace Testing3
             //create an instance of the class we want to create 
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            Error = ACustomer.Valid(CustomerID, CustomerName, AddressLine1, PostCode, EmailAddress, EmailVerification, AccountCreationDate);
+            Error = ACustomer.Valid(CustomerName, AddressLine1, PostCode, EmailAddress, EmailVerification, AccountCreationDate);
             Assert.AreEqual(Error, "");
         }
 
