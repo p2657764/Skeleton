@@ -40,6 +40,11 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(string CustomerName, string AddressLine1, string PostCode, string EmailAddress, bool EmailVerification, string AccountCreationDate)
+        {
+            return "";
+        }
+
         //private data member for address line
         private string mAddressLine1;
 
