@@ -130,7 +130,16 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string PostCode)
+        public string Valid(Int32 CustomerID,
+                            string CustomerName,
+                            string AddressLine1,
+                            string PostCode,
+                            string EmailAddress,
+                            Boolean EmailVerification,
+                            DateTime AccountCreationDate)
+        //function accepts 7 parameters for valiadation
+        //returns string containing error message
+        //if no errors blank string returned 
         {
             return "";
         }
@@ -154,6 +163,7 @@ namespace ClassLibrary
                 mEmailAddress = Convert.ToString(DB.DataTable.Rows[0]["EmailAddress"]);
                 mEmailVerification = Convert.ToBoolean(DB.DataTable.Rows[0]["EmailVerification"]);
                 mAccountCreationDate = Convert.ToDateTime(DB.DataTable.Rows[0]["AccountCreationDate"]);
+                
                 //return worked
                 return true;
             }
