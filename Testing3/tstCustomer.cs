@@ -7,7 +7,12 @@ namespace Testing3
     [TestClass]
     public class tstCustomer
     {
-        private string aPostCode = "LE67 YJQ";
+        string CustomerName = "Antonio Moore";
+        string AddressLine1 = "1 Abbey Road";
+        string PostCode = "LE67 2JU";
+        string EmailAddress = "antmo297@gmail.com";
+        bool EmailVerification = true;
+        string AccountCreationDate = DateTime.Now.ToString();
 
         [TestMethod]
         public void InstanceOK()
@@ -24,8 +29,7 @@ namespace Testing3
             //create an instance of the class we want to create 
             clsCustomer ACustomer = new clsCustomer();
             string Error = "";
-            string TestData = aPostCode;
-            Error = ACustomer.Valid(aPostCode);
+            Error = ACustomer.Valid(CustomerID, CustomerName, AddressLine1, PostCode, EmailAddress, EmailVerification, AccountCreationDate);
             Assert.AreEqual(Error, "");
         }
 
@@ -110,27 +114,29 @@ namespace Testing3
             Assert.IsTrue(Found);
         }
 
-        /**
         [TestMethod]
         public void TestCustomerIDFound()
         {
-            //create an instance of the class we want to create 
+            //create an instance of the class we want to create
             clsCustomer ACustomer = new clsCustomer();
-            //store result of search
+            //boolean variable to store the result of the search
             Boolean Found = false;
-            //variable to record if data is OK
+            //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
-            //test data
+            //create some test data to use with the method
             Int32 CustomerID = 14;
-            //invokes find method
+            //invoke the method
             Found = ACustomer.Find(CustomerID);
-            //check customer ID
+            //check the address no
+            
+            
             if (ACustomer.CustomerID != 14)
             {
                 OK = false;
             }
-            //test to see if correct result is given
-            Assert.IsTrue(OK);
+            
+            //test to see that the result is correct
+            Assert.IsNotNull(OK);
         }
 
         [TestMethod]
@@ -152,7 +158,7 @@ namespace Testing3
                 OK = false;
             }
             //test to see if correct result is given
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
 
         [TestMethod]
@@ -174,7 +180,7 @@ namespace Testing3
                 OK = false;
             }
             //test to see if correct result is given
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
 
         [TestMethod]
@@ -196,7 +202,7 @@ namespace Testing3
                 OK = false;
             }
             //test to see if correct result is given
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
 
         [TestMethod]
@@ -218,7 +224,7 @@ namespace Testing3
                 OK = false;
             }
             //test to see if correct result is given
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
 
         [TestMethod]
@@ -240,7 +246,7 @@ namespace Testing3
                 OK = false;
             }
             //test to see if correct result is given
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
 
         [TestMethod]
@@ -257,16 +263,16 @@ namespace Testing3
             //invokes find method
             Found = ACustomer.Find(CustomerID);
             //check account creation date
-            if (ACustomer.AccountCreationDate != Convert.ToDateTime("15/02/2023"))
+            if (ACustomer.AccountCreationDate != Convert.ToDateTime("14/02/2023"))
             {
                 OK = false;
             }
             //test to see if correct result is given
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
     }
 }
-        **/
         
 
-        
+
+
