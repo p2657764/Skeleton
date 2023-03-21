@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassLibrary;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -29,8 +30,14 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
-        
+
+        //create a new instance of ClsStaff
+        ClsStaff staff = new ClsStaff();
+        //capture the name
+        staff.Name = txtName.Text;
+        //store the name in session object
+        Session["Staff"] = staff;
         //navigate to the viewer page
-        Response.Redirect("AddressBookViewer.aspx");
+        Response.Redirect("StaffViewer.aspx");
     }
 }
