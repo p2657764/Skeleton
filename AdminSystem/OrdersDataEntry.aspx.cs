@@ -18,19 +18,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         Response.Write(AnOrder.OrderID);
     }
 
-    protected void btnOK_Click(object sender, EventArgs e)
-    {
-        //create a new instance of clsOrder
-        clsOrder AnOrder = new clsOrder();
-        //capture the order 
-
-        //store the order id in the session object
-        Session["AnOrder"] = AnOrder;
-        //navigate to the viewer page 
-        Response.Redirect("OrderDataEntry.aspx");
-    }
-
-    protected void FindButton_Click(object sender, EventArgs e)
+    protected void Button1_Click(object sender, EventArgs e)
     {
         //create an instance of the address class
         clsOrder AnOrder = new clsOrder();
@@ -48,6 +36,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //display the values of the properties in the form
             txtOrderNo.Text = AnOrder.OrderID;
         }
+    }
+
+    protected void btnOK_Click_Click(object sender, EventArgs e)
+    {
+        //create a new instance of clsOrder
+        clsOrder AnOrder = new clsOrder();
+        //capture the order 
+
+        //store the order id in the session object
+        Session["AnOrder"] = AnOrder;
+        //navigate to the viewer page 
+        Response.Redirect("OrderDataEntry.aspx");
     }
 
 }
