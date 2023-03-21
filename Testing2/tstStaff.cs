@@ -26,6 +26,17 @@ namespace Testing2
 
             Assert.AreEqual(staff.Active, TestData);
         }
+        [TestMethod]
+        public void StartDatePropertyOK()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Int32 TestData = 21 / 12 / 22;
+
+            staff.StartDate = TestData;
+
+            Assert.AreEqual(staff.StartDate, TestData);
+        }
 
         [TestMethod]
         public void DateAddedPropertyOK()
@@ -89,6 +100,137 @@ namespace Testing2
             Assert.AreEqual(staff.UpdateCatalogue, TestData);
 
         }
+        [TestMethod]
+        public void RolePropertyOK()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Boolean TestData = true;
+
+            staff.Role = TestData;
+
+            Assert.AreEqual(staff.Role, TestData);
+        }
+        [TestMethod]
+        public void FindMethodOK()
+        {
+            ClsStaff staffID = new ClsStaff();
+
+            Boolean Found = false;
+
+            Int32 TestData = 21;
+
+            Found = staffID.Find(TestData);
+
+            Assert.IsTrue(Found);
+        }
+
+        [TestMethod]
+        public void TestNameNotFound()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            string StaffID = "Alfie";
+
+            Found = staff.Find(StaffID);
+
+            if(staff.Name != "Alfie")
+            {
+                OK = false;
+            }
+
+            Assert.IsTrue(OK);
+
+
+        }
+        [TestMethod]
+        public void TestWageNotFound()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StaffID = 21;
+
+            Found = staff.Find(StaffID);
+
+            if (staff.Wage != "TestWage")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestDepartmentNotFound()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StaffID = 21;
+
+            Found = staff.Find(StaffID);
+
+            if (staff.Department != "TestDepartment")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestRoleNotFound()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StaffID = 21;
+
+            Found = staff.Find(StaffID);
+
+            if (staff.Role != "TestRole")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+
+        }
+        [TestMethod]
+        public void TestStartDateNotFound()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StaffID = 21;
+
+            Found = staff.Find(StaffID);
+
+            if (staff.StartDate != "TestStartDate")
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+            
+
+
+            
+
+
+        
     }
 }
 
