@@ -34,7 +34,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Found == true)
         {
             //display the values of the properties in the form
-            txtOrderNo.Text = AnOrder.OrderID;
+            txtOrderPlacedDate.Text = AnOrder.OrderPlacedDate.ToString();
+            chkOrderVerification.Checked = AnOrder.OrderVerification;
+            txtProductQuantity.Text = AnOrder.ProductQuantity.ToString();
+            txtUnitPrice.Text = AnOrder.UnitPrice.ToString();
+            txtShippingDate.Text = AnOrder.ShippingDate.ToString(); 
         }
     }
 
