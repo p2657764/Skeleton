@@ -21,25 +21,71 @@ namespace ClassLibrary
             }
         }
         //dateAdded private member variable
-        private DateTime mDateAdded;
+        private DateTime mOrderPlacedDate;
         //DateAdded public property
-        public DateTime DateAdded
+        public DateTime OrderPlacedDate
         {
             get
             {
-                return mDateAdded;
+                return mOrderPlacedDate;
             }
             set
             {
-                mDateAdded = value;
+                mOrderPlacedDate = value;
             }
         }
-        public int CustomerID { get; set; }
-        public DateTime OrderPlacedDate { get; set; }
-        public bool OrderVerification { get; set; }
-        public int ProductQuantity { get; set; }
-        public int UnitPrice { get; set; }
-        public DateTime ShippingDate { get; set; }
+
+        private bool mOrderVerification;
+        public bool OrderVerification
+        {
+            get
+            {
+                return mOrderVerification;
+            }
+            set
+            {
+                mOrderVerification = value;
+            }
+        }
+
+        private Int32 mProductQuantity;
+        public Int32 ProductQuantity
+        {
+            get
+            {
+                return mProductQuantity;
+            }
+            set
+            {
+                mProductQuantity = value;
+            }
+        }
+
+        private Int32 mUnitPrice;
+        public Int32 UnitPrice
+        {
+            get
+            {
+                return mUnitPrice;
+            }
+            set
+            {
+                mUnitPrice = value;
+            }
+        }
+
+        private DateTime mShippingDate;
+        public DateTime ShippingDate
+        {
+            get
+            {
+                return mShippingDate;
+            }
+            set
+            {
+                mShippingDate = value;
+            }
+        }
         public bool Active { get; set; }
 
         public bool Find(int OrderNo)
@@ -55,7 +101,9 @@ namespace ClassLibrary
             {
                 //copy the data from the database to the private data members
                 mOrderNo = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNo"]);
-                mDateAdded = Convert.ToDateTime(DB.DataTable.Rows[0]["DateAdded"]);
+                mOrderPlacedDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderPlacedDate"]);
+                
+
                 //return that everything worked ok
                 return true;
             }

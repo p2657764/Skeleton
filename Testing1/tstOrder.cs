@@ -7,6 +7,7 @@ namespace Testing1
     [TestClass]
     public class tstOrder
     {
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -191,6 +192,25 @@ namespace Testing1
             }
         }
 
+        [TestMethod]
+        public void TestUnitPriceFound()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //Boolean variable to store the result of the search
+            Boolean Found = false;
+            //Boolean variable to record if the data is ok
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 OrderNo = 18;
+            //invoke the method
+            Found = AnOrder.Find(OrderNo);
+            //check the property
+            if (AnOrder.UnitPrice)
+            {
+
+            }
+        }
     }
 
 
