@@ -86,8 +86,7 @@ namespace ClassLibrary
                 mShippingDate = value;
             }
         }
-        public bool Active { get; set; }
-
+    
         public bool Find(int OrderNo)
         {
             //create an instance of the data connection
@@ -102,7 +101,10 @@ namespace ClassLibrary
                 //copy the data from the database to the private data members
                 mOrderNo = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNo"]);
                 mOrderPlacedDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderPlacedDate"]);
-                
+                mOrderVerification = Convert.ToBoolean(DB.DataTable.Rows[0]["OrderVerification"]);
+                mProductQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["ProductQuantity"]);
+                mUnitPrice = Convert.ToInt32(DB.DataTable.Rows[0]["UnitPrice"]);
+                mShippingDate = Convert.ToDateTime(DB.DataTable.Rows[0]["ShippingDate"]);
 
                 //return that everything worked ok
                 return true;

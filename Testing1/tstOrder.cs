@@ -186,9 +186,9 @@ namespace Testing1
             //invoke the method
             Found = AnOrder.Find(OrderNo);
             //check the property
-            if (AnOrder.ProductQuantity != ProductQuantity)
+            if (AnOrder.ProductQuantity != 1)
             {
-
+                OK = false;
             }
         }
 
@@ -206,9 +206,9 @@ namespace Testing1
             //invoke the method
             Found = AnOrder.Find(OrderNo);
             //check the property
-            if (AnOrder.UnitPrice)
+            if (AnOrder.UnitPrice != 1)
             {
-
+                OK = false;
             }
         }
     }

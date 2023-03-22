@@ -19,7 +19,7 @@
         <asp:Label ID="lblOrderPlacedDate" runat="server" style="z-index: 1; left: 10px; top: 38px; position: absolute" Text="OrderPlacedDate" width="62px" height="18px"></asp:Label>
         <asp:TextBox ID="txtOrderPlacedDate" runat="server" style="z-index: 1; left: 170px; top: 42px; position: absolute; margin-top: 0px; width: 150px;" height="22px"></asp:TextBox>
         <asp:Label ID="lblOrderVerification" runat="server" style="z-index: 1; left: 10px; top: 68px; position: absolute" Text="OrderVerification" width="62px" height="18px"></asp:Label>
-        <asp:CheckBox ID="chkOrderVerification" runat="server" style="z-index: 1; left: 123px; top: 67px; position: absolute; width: 22px; height: 18px; margin-top: 0px;" />
+        <asp:CheckBox ID="chkOrderVerification" runat="server" style="z-index: 1; left: 123px; top: 67px; position: absolute; width: 22px; height: 20px; margin-top: 0px;" Text=" " />
         <asp:TextBox ID="txtOrderNo" runat="server" style="z-index: 1; top: 16px; position: absolute; width: 150px; left: 170px; right: 1157px;" OnTextChanged="txtOrderNo_TextChanged"></asp:TextBox>
         <br />
         <br />
