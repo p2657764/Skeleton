@@ -11,6 +11,8 @@
         <div>
         </div>
         <asp:Label ID="lblRole" runat="server" style="z-index: 1; left: 15px; top: 161px; position: absolute; height: 23px;" Text="Staff Role" width="683px"></asp:Label>
+        <asp:Label ID="lblStaffId" runat="server" Text="StaffId"></asp:Label>
+        <asp:TextBox ID="txtStaffId" runat="server" style="margin-left: 93px"></asp:TextBox>
         <p style="height: 19px; width: 683px">
             <asp:TextBox ID="txtStaffWage" runat="server" style="z-index: 1; left: 142px; top: 63px; position: absolute; width: 219px"></asp:TextBox>
             Staff Wage</p>
@@ -27,13 +29,17 @@
         <asp:TextBox ID="txtRole" runat="server" style="z-index: 1; left: 131px; top: 173px; position: absolute; width: 683px; height: 14px; bottom: 484px;"></asp:TextBox>
         </p>
         <asp:CheckBox ID="chkUpdateCatalogue" runat="server" style="z-index: 1; left: 14px; top: 196px; position: absolute; height: 19px; width: 683px" Text="Update Catalogue" TextAlign="Left" />
-        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 84px; top: 259px; position: absolute; height: 27px; width: 44px" Text="OK" />
+        <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 84px; top: 259px; position: absolute; height: 27px; width: 44px; right: 643px;" Text="OK" />
         <p>
-            &nbsp;</p>
+            <asp:Button ID="btnCancel0" runat="server" style="z-index: 1; left: 147px; top: 260px; position: absolute; width: 112px; height: 25px" Text="Cancel" />
+        </p>
         <asp:Label ID="tblStartDate" runat="server" style="z-index: 1; left: 13px; top: 122px; position: absolute; height: 19px; margin-top: 12px" Text="Start Date" width="683px"></asp:Label>
         <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 10px; top: 220px; position: absolute; height: 21px" width="683px"></asp:Label>
         <p>
-            <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 147px; top: 260px; position: absolute; width: 112px; height: 25px" Text="Cancel" />
+            &nbsp;</p>
+        <p>
+        <asp:Button ID="btnOK0" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 84px; top: 259px; position: absolute; height: 27px; width: 44px" Text="OK" />
+            <asp:Button ID="btnFind" runat="server" Height="38px" OnClick="btnFind_Click" style="margin-left: 268px; margin-top: 0px" Text="Find" Width="300px" />
         </p>
     </form>
 </body>

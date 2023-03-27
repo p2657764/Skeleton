@@ -31,7 +31,7 @@ namespace Testing2
         {
             ClsStaff staff = new ClsStaff();
 
-            Int32 TestData = 21 / 12 / 22;
+            string TestData = "21/12/22";
 
             staff.StartDate = TestData;
 
@@ -134,11 +134,11 @@ namespace Testing2
 
             Boolean OK = true;
 
-            string StaffID = "Alfie";
+            Int32 StaffId = 21;
 
-            Found = staff.Find(StaffID);
+            Found = staff.Find(StaffId);
 
-            if(staff.Name != "Alfie")
+            if (staff.Name != "Bob")
             {
                 OK = false;
             }
@@ -223,6 +223,48 @@ namespace Testing2
                 OK = false;
             }
             Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestUpdateCatalogue()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StaffID = 21;
+
+            Found = staff.Find(StaffID);
+
+            if (staff.UpdateCatalogue != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+        }
+        [TestMethod]
+        public void TestActiveFound()
+        {
+            ClsStaff staff = new ClsStaff();
+
+            Boolean Found = false;
+
+            Boolean OK = true;
+
+            Int32 StaffID = 21;
+
+            Found = staff.Find(StaffID);
+
+            if (staff.Active != true)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
+
+            
+
+            
         }
             
 
