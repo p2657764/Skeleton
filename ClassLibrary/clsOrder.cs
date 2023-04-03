@@ -20,6 +20,24 @@ namespace ClassLibrary
                 mOrderNo = value;
             }
         }
+
+        //private data member for active
+        private Boolean mActive;
+        //public property for active
+        public bool Active
+        {
+            get
+            {
+                //return the private data
+                return mActive;
+            }
+            set
+            {
+                //set the private data
+                mActive = value;
+            }
+        }
+
         //dateAdded private member variable
         private DateTime mOrderPlacedDate;
         //DateAdded public property
