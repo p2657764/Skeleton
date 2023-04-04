@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <asp:Label ID="lblOrderNo" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute; bottom: 842px; width: 62px;" Text="OrderID"></asp:Label>
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 24px; top: 260px; position: absolute; height: 19px;" width="53px"></asp:Label>
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 24px; top: 260px; position: absolute; " width="53px"> </asp:Label>
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 84px; top: 221px; position: absolute; right: 1341px" Text="Cancel" />
         <asp:Label ID="lblOrderPlacedDate" runat="server" style="z-index: 1; left: 10px; top: 38px; position: absolute" Text="OrderPlacedDate" width="62px" height="18px"></asp:Label>
         <asp:TextBox ID="txtOrderPlacedDate" runat="server" style="z-index: 1; left: 170px; top: 42px; position: absolute; margin-top: 0px; width: 150px;" height="22px"></asp:TextBox>
