@@ -149,7 +149,28 @@ namespace Testing1
             Assert.IsTrue(OK);
 
         }
+        [TestMethod]       
+        public void TestOrderDateFound()
+        {
+            //create an instance of the class we want to create
+            clsOrder AnOrder = new clsOrder();
+            //boolean variable to store the result of the search
+            Boolean Found = false;
+            //Boolean variable to record if the data is ok(assume it is)
+            Boolean OK = true;
+            //create some test data to use with the method
+            Int32 OrderNo = 18;
+            //invoke the method
+            Found = AnOrder.Find(OrderNo);
+            //check the property
+            if (AnOrder.ShippingDate != Convert.ToDateTime("23/09/2015"))
+            {
+                OK = false;
+            }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
 
+        }
         [TestMethod]
         public void TestOrderVerificationFound()
         {
@@ -190,6 +211,8 @@ namespace Testing1
             {
                 OK = false;
             }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
         }
 
         [TestMethod]
@@ -206,10 +229,12 @@ namespace Testing1
             //invoke the method
             Found = AnOrder.Find(OrderNo);
             //check the property
-            if (AnOrder.UnitPrice != 1)
+            if (AnOrder.UnitPrice != 5.99)
             {
                 OK = false;
             }
+            //test to see that the result is correct
+            Assert.IsTrue(OK);
         }
             [TestMethod]
         public void TestActiveFound()
