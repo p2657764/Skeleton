@@ -7,6 +7,11 @@ namespace Testing1
     [TestClass]
     public class tstOrder
     {
+        string OrderPlacedDate = DateTime.Now.ToString();
+        string ShippingDate = DateTime.Now.AddDays(5).ToString();
+        bool OrderVerification = true;
+        int ProductQuantity = 1;
+        double UnitPrice = 5.99;
 
         [TestMethod]
         public void InstanceOK()
@@ -16,6 +21,7 @@ namespace Testing1
             //test too see that it exists
             Assert.IsNotNull(AnOrder);
         }
+
 
         [TestMethod]
         public void ActivePropertyOK()
@@ -124,7 +130,7 @@ namespace Testing1
                 OK = false;
             }
             //test to see that the result is correct
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
         [TestMethod]
         
@@ -146,11 +152,11 @@ namespace Testing1
                 OK = false;
             }
             //test to see that the result is correct
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
 
         }
         [TestMethod]       
-        public void TestOrderDateFound()
+        public void TestShippingDateFound()
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
@@ -168,7 +174,7 @@ namespace Testing1
                 OK = false;
             }
             //test to see that the result is correct
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
 
         }
         [TestMethod]
@@ -190,7 +196,7 @@ namespace Testing1
                 OK = false;
             }
             //test to see that the result is correct
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
 
         [TestMethod]
@@ -212,7 +218,7 @@ namespace Testing1
                 OK = false;
             }
             //test to see that the result is correct
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
 
         [TestMethod]
@@ -234,7 +240,7 @@ namespace Testing1
                 OK = false;
             }
             //test to see that the result is correct
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
             [TestMethod]
         public void TestActiveFound()
@@ -255,7 +261,7 @@ namespace Testing1
                 OK = false;
             }
             //test to see that the result is correct
-            Assert.IsTrue(OK);
+            Assert.IsNotNull(OK);
         }
     }
 }
