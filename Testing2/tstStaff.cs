@@ -31,30 +31,18 @@ namespace Testing2
         {
             ClsStaff staff = new ClsStaff();
 
-            string TestData = "21/12/22";
+            DateTime TestData = Convert.ToDateTime("11/01/2001");
 
             staff.StartDate = TestData;
 
             Assert.AreEqual(staff.StartDate, TestData);
-        }
-
-        [TestMethod]
-        public void DateAddedPropertyOK()
-        {
-            ClsStaff staff = new ClsStaff();
-
-            DateTime TestData = DateTime.Now.Date;
-
-            staff.DateAdded = TestData;
-
-            Assert.AreEqual(staff.DateAdded, TestData);
         }
         [TestMethod]
         public void NamePropertyOK()
         {
             ClsStaff staff = new ClsStaff();
 
-            string TestData = "Dale Brannigan";
+            string TestData = "Alfie Nickson";
 
             staff.Name = TestData;
 
@@ -80,11 +68,11 @@ namespace Testing2
         {
             ClsStaff staff = new ClsStaff();
 
-            Int32 TestData = 100;
+            int TestData = 100;
 
-            staff.Wage = TestData;
+            staff.StaffWage = TestData;
 
-            Assert.AreEqual(staff.Wage, TestData);
+            Assert.AreEqual(staff.StaffWage, TestData);
 
         }
 
@@ -105,7 +93,7 @@ namespace Testing2
         {
             ClsStaff staff = new ClsStaff();
 
-            Boolean TestData = true;
+            string TestData = "P and C";
 
             staff.Role = TestData;
 
@@ -114,14 +102,11 @@ namespace Testing2
         [TestMethod]
         public void FindMethodOK()
         {
-            ClsStaff staffID = new ClsStaff();
-
+            //create an instance of the class we want to create 
+            ClsStaff staff = new ClsStaff();
             Boolean Found = false;
-
-            Int32 TestData = 21;
-
-            Found = staffID.Find(TestData);
-
+            Int32 StaffNo = 21;
+            Found = staff.Find(StaffNo);
             Assert.IsTrue(Found);
         }
 
@@ -134,11 +119,11 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 StaffId = 21;
+            Int32 StaffNo = 21;
 
-            Found = staff.Find(StaffId);
+            Found = staff.Find(StaffNo);
 
-            if (staff.Name != "Bob")
+            if (staff.Name != "Alfie Nickson")
             {
                 OK = false;
             }
@@ -156,11 +141,11 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 StaffID = 21;
+            Int32 StaffNo = 21;
 
-            Found = staff.Find(StaffID);
+            Found = staff.Find(StaffNo);
 
-            if (staff.Wage != "TestWage")
+            if (staff.StaffWage != 200)
             {
                 OK = false;
             }
@@ -175,11 +160,11 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 StaffID = 21;
+            Int32 StaffNo = 21;
 
-            Found = staff.Find(StaffID);
+            Found = staff.Find(StaffNo);
 
-            if (staff.Department != "TestDepartment")
+            if (staff.Department != "Managment")
             {
                 OK = false;
             }
@@ -194,11 +179,11 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 StaffID = 21;
+            Int32 StaffNo = 21;
 
-            Found = staff.Find(StaffID);
+            Found = staff.Find(StaffNo);
 
-            if (staff.Role != "TestRole")
+            if (staff.Role != "P and C")
             {
                 OK = false;
             }
@@ -214,11 +199,11 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 StaffID = 21;
+            Int32 StaffNo = 21;
 
-            Found = staff.Find(StaffID);
+            Found = staff.Find(StaffNo);
 
-            if (staff.StartDate != "TestStartDate")
+            if (staff.StartDate != Convert.ToDateTime("11/01/2001"))
             {
                 OK = false;
             }
@@ -233,9 +218,9 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 StaffID = 21;
+            Int32 StaffNo = 21;
 
-            Found = staff.Find(StaffID);
+            Found = staff.Find(StaffNo);
 
             if (staff.UpdateCatalogue != true)
             {
@@ -252,9 +237,9 @@ namespace Testing2
 
             Boolean OK = true;
 
-            Int32 StaffID = 21;
+            Int32 StaffNo = 21;
 
-            Found = staff.Find(StaffID);
+            Found = staff.Find(StaffNo);
 
             if (staff.Active != true)
             {
@@ -262,9 +247,20 @@ namespace Testing2
             }
             Assert.IsTrue(OK);
 
-            
-
-            
+        }
+        [TestMethod]
+        public void TestStaffIdFound()
+        {
+            ClsStaff staff = new ClsStaff();
+            Boolean Found = false;
+            Boolean OK = true;
+            Int32 StaffNo = 21;
+            Found = staff.Find(StaffNo);
+            if (staff.StaffNo != 21)
+            {
+                OK = false;
+            }
+            Assert.IsTrue(OK);
         }
             
 

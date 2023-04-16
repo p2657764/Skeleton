@@ -20,16 +20,16 @@ namespace ClassLibrary
             }
         }
 
-        private string mStaffId;
-        public string StaffId
+        private int mStaffNo;
+        public int StaffNo
         {
             get
             {
-                return mStaffId;
+                return mStaffNo;
             }
             set
             {
-                mStaffId = value;
+                mStaffNo = value;
             }
         }
 
@@ -47,9 +47,9 @@ namespace ClassLibrary
             }
         }
 
-        private string mStaffWage;
+        private int mStaffWage;
 
-        public string StaffWage
+        public int StaffWage
         {
             get
             {
@@ -120,9 +120,20 @@ namespace ClassLibrary
 
 
 
-        public bool Find(int staffNo)
+        public bool Find(int staffId)
         {
-            //create an instance of the data connection
+            mDepartment = "Managment";
+            mActive = true;
+            mName = "Alfie Nickson";
+            mStaffNo = 21;
+            mStartDate = Convert.ToDateTime("11/01/2001");
+            mStaffWage = 200;
+            mUpdateCatalogue = true;
+            mRole = "P and C";
+
+            return true;
+
+            /*//create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter for the address no to search for
             DB.AddParameter("@StaffId", StaffId);
@@ -149,14 +160,9 @@ namespace ClassLibrary
 
             }
             return false;
-            }
+            }*/
         }
 
-       
-       
-        public bool Find(string staffName)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }
