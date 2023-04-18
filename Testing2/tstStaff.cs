@@ -7,6 +7,29 @@ namespace Testing2
     [TestClass]
     public class tstStaff
     {
+        //good test data
+        //some data to pass to the method
+        string StaffNo = "21";
+        string staffWage = "200";
+        string staffRole = "P and C";
+        string staffDepartment = "Managment";
+        string StartDate = "11/01/2001";
+        string staffUpdateCatalogue = "true";
+
+        [TestMethod]
+        public void ValidMethodOK()
+        {
+            //create an instance of the class
+            ClsStaff staff = new ClsStaff();
+            //string variable to store any error message
+            String Error = "";
+            //invoke the method
+            Error = staff.Valid(StaffNo, staffWage, staffRole, staffDepartment, StartDate, staffUpdateCatalogue);
+            //test to see that the result is correct
+
+            Assert.AreEqual(Error, "");
+        }
+
         [TestMethod]
         public void InstanceOK()
         {
@@ -262,6 +285,8 @@ namespace Testing2
             }
             Assert.IsTrue(OK);
         }
+        
+
             
 
 

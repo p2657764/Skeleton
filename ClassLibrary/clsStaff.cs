@@ -47,6 +47,11 @@ namespace ClassLibrary
             }
         }
 
+        public string Valid(string staffNo, string staffWage, string staffRole, string staffDepartment, string startDate, string staffUpdateCatalogue)
+        {
+            return "";
+        }
+
         private int mStaffWage;
 
         public int StaffWage
