@@ -40,11 +40,6 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string CustomerName, string AddressLine1, string PostCode, string EmailAddress, bool EmailVerification, string AccountCreationDate)
-        {
-            return "";
-        }
-
         //private data member for address line
         private string mAddressLine1;
 
@@ -135,19 +130,91 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(Int32 CustomerID,
-                            string CustomerName,
-                            string AddressLine1,
-                            string PostCode,
-                            string EmailAddress,
-                            Boolean EmailVerification,
-                            DateTime AccountCreationDate)
-        //function accepts 7 parameters for valiadation
-        //returns string containing error message
-        //if no errors blank string returned 
+        //function accepts 5 parameters for valiadation
+        public string Valid(string customerName, string addressLine1, string postCode, string emailAddress, string accountCreationDate)
         {
-            return "";
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store date values
+            DateTime DateTemp;
+            //if the HouseNo is blank
+            if (customerName.Length == 0)
+            {
+                //record the error
+                Error = Error + "The customer name may not be blank : ";
+            }
+            //if the house no is greater than 6 characters
+            if (customerName.Length > 25)
+            {
+                //record the error
+                Error = Error + "The customer name must be less than 6 characters : ";
+            }
+
+            try
+            {
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(accountCreationDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
+            }
+          
+            //is the post code blank
+            if (postCode.Length == 0)
+            {
+                //record the error
+                Error = Error + "The post code may not be blank : ";
+            }
+            //if the post code is too long
+            if (postCode.Length > 9)
+            {
+                //record the error
+                Error = Error + "The post code must be less than 9 characters : ";
+            }
+
+            //is the street blank
+            if (addressLine1.Length == 0)
+            {
+                //record the error
+                Error = Error + "The address line may not be blank : ";
+            }
+            //if the street is too long
+            if (addressLine1.Length > 40)
+            {
+                //record the error
+                Error = Error + "The address line must be less than 50 characters : ";
+            }
+            //is the town blank
+            if (emailAddress.Length == 0)
+            {
+                //record the error
+                Error = Error + "The email address may not be blank : ";
+            }
+            //if the town is too long
+            if (emailAddress.Length > 254)
+            {
+                //record the error
+                Error = Error + "The email address must be less than 254 characters : ";
+            }
+            //return any error messages
+            return Error;
         }
+
+
 
         public bool Find(int CustomerID)
         {
