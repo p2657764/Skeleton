@@ -15,15 +15,46 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click(object sender, EventArgs e)
     {
+        //create new instance of clsCustomer
         clsCustomer ACustomer = new clsCustomer();
-        ACustomer.CustomerName = txtCustomerName.Text;
-        ACustomer.AddressLine1 = txtAddressLine1.Text;
-        ACustomer.PostCode = txtPostCode.Text;
-        ACustomer.EmailAddress = txtEmailAddress.Text;
-        ACustomer.EmailVerification = chkEmailVerification.Visible;
-        Session["ACustomer"] = ACustomer;
-        Response.Redirect("CustomerViewer.aspx");
+        //capture customer name
+        string CustomerName = txtCustomerName.Text;
+        //capture address line
+        string AddressLine1 = txtAddressLine1.Text;
+        //capture post code
+        string PostCode = txtPostCode.Text;
+        //capture email address
+        string EmailAddress = txtEmailAddress.Text;
+        //capture account creation date
+        string AccountCreationDate = txtAccountCreationDate.Text;
+        //store any error messages in variable
+        string Error = "";
+        //validate data
+        Error = ACustomer.Valid(CustomerName, AddressLine1, PostCode, EmailAddress, AccountCreationDate);
+        if (Error == "")
+        {
+            //capture customer name
+            ACustomer.CustomerName = txtCustomerName.Text;
+            //capture address line
+            ACustomer.AddressLine1 = txtAddressLine1.Text;
+            //capture post code
+            ACustomer.PostCode = txtPostCode.Text;
+            //capture email address
+            ACustomer.EmailAddress = txtEmailAddress.Text;
+            //capture account creation date
+            ACustomer.AccountCreationDate = Convert.ToDateTime(txtAccountCreationDate.Text);
+            //store customer in session object
+            Session["ACustomer"] = ACustomer;
+            //redirect to view page
+            Response.Write("CustomerViewer.aspx");
+        }
+        else
+        {
+            //display error message 
+            lblError.Text = Error;
+        }
     }
+
 
     protected void chkEmailVerification_CheckedChanged(object sender, EventArgs e)
     {

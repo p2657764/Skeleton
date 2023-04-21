@@ -143,7 +143,7 @@ namespace ClassLibrary
                 //record the error
                 Error = Error + "The customer name may not be blank : ";
             }
-            //if the house no is greater than 6 characters
+            //if the house no is greater than 25 characters
             if (customerName.Length > 25)
             {
                 //record the error
