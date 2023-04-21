@@ -6,9 +6,9 @@
 <head runat="server">
     <title></title>
 </head>
-<body style="height: 205px">
+<body style="height: 256px">
     <form id="form1" runat="server">
-        <div style="height: 202px">
+        <div style="height: 258px">
             <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID" Width="150px"></asp:Label>
             <asp:TextBox ID="txtCustomerID" runat="server" ClientIDMode="AutoID" Width="200px"></asp:TextBox>
             <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
@@ -35,6 +35,7 @@
             <br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="lblError" runat="server" Text="Error"></asp:Label>
             </div>
     </form>
 </body>
