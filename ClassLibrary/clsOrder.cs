@@ -104,7 +104,30 @@ namespace ClassLibrary
                 mShippingDate = value;
             }
         }
-    
+        
+        //function accepts 5 parameters for validation
+        public string Valid (string orderPlacedDate, int productQuantity, double unitPrice, string shippingDate)
+        {
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store data values
+            DateTime DateTemp;
+            //copy the dateadde value to the datetemp variable
+            DateTemp = Convert.ToDateTime(orderPlacedDate);
+            if (DateTemp < DateTime.Now.Date)
+            {
+                //record the error
+                Error = Error + "The date cannot be in the past: ";
+            }
+            //check to see if the date is greater than todays date
+            if (DateTemp > DateTime.Now.Date)
+            {
+                //record the error
+                Error = Error + "The date cannot be in the future: ";
+            }
+            //return any error messages
+            return Error;
+        }
         public bool Find(int OrderNo)
         {
             //create an instance of the data connection
