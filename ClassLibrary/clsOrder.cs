@@ -106,24 +106,66 @@ namespace ClassLibrary
         }
         
         //function accepts 5 parameters for validation
-        public string Valid (string orderPlacedDate, int productQuantity, double unitPrice, string shippingDate)
+        public string Valid (string orderPlacedDate, string productQuantity, string unitPrice, string shippingDate)
         {
             //create a string variable to store the error
             String Error = "";
             //create a temporary variable to store data values
             DateTime DateTemp;
             //copy the dateadde value to the datetemp variable
-            DateTemp = Convert.ToDateTime(orderPlacedDate);
-            if (DateTemp < DateTime.Now.Date)
+            try
             {
-                //record the error
-                Error = Error + "The date cannot be in the past: ";
+                DateTemp = Convert.ToDateTime(orderPlacedDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past: ";
+                }
+                //check to see if the date is greater than todays date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future: ";
+                }
             }
-            //check to see if the date is greater than todays date
-            if (DateTemp > DateTime.Now.Date)
+            catch
             {
                 //record the error
-                Error = Error + "The date cannot be in the future: ";
+                Error = Error + "The date was not a valid date: ";
+            }
+            //check to see if the product quanity is 0
+            if (ProductQuantity == 0)
+            {
+                //record the error
+                Error = Error + "The product quantity cannot be 0: ";
+            }
+            //check to see if the unit price is 0
+            if (UnitPrice == 0)
+            {
+                //record the error 
+                Error = Error + "The unit price cannot be 0: ";
+            }
+            try
+            {
+                //copy the dateAdded value to the DateTemp variable
+                DateTemp = Convert.ToDateTime(ShippingDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                //check to see if the date is greater than today's date
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+
+            {
+                //record the error
+                Error = Error + "The date was not a valid date : ";
             }
             //return any error messages
             return Error;
