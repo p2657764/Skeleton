@@ -10,15 +10,9 @@ public partial class _1_DataEntry : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        //create a new instance of clsOrder
-        clsOrder AnOrder = new clsOrder();
-        //get the data from the session object
-        AnOrder = (clsOrder)Session["AnOrder"];
-        //display the order id for this entry
-        Response.Write(AnOrder.OrderID);
     }
 
-    protected void Button1_Click(object sender, EventArgs e)
+    protected void Button1_Click(object sender, EventArgs e) //find button
     {
         //create an instance of the address class
         clsOrder AnOrder = new clsOrder();
@@ -27,7 +21,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //variable to store the result of the find operation
         Boolean Found = false;
         //get the primary key entered by the user
-        OrderNo = Convert.ToInt32(txtOrderNo.Text);
+        OrderNo = Convert.ToInt32(txtOrderNo);
         //find the record 
         Found = AnOrder.Find(OrderNo);
         //if found
@@ -44,14 +38,41 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
     protected void btnOK_Click_Click(object sender, EventArgs e)
     {
-        //create a new instance of clsOrder
+        //create new instance of clsORder
         clsOrder AnOrder = new clsOrder();
-        //capture the order 
+        //capture placed date
+        string OrderPlacedDate = txtOrderPlacedDate.Text;
+        //capture product quantity
+        string ProductQuantity = txtProductQuantity.Text;
+        //capture unit price
+        string UnitPrice = txtUnitPrice.Text;
+        //capture shipping date
+        string ShippingDate = txtShippingDate.Text;
+        //store any error messages in variable
+        string Error = "";
+        //validate data
+        Error = AnOrder.Valid(OrderPlacedDate, ProductQuantity, UnitPrice, ShippingDate);
+        if (Error == "")
+        {
 
-        //store the order id in the session object
-        Session["AnOrder"] = AnOrder;
-        //navigate to the viewer page 
-        Response.Redirect("OrderDataEntry.aspx");
+            //capture order placed date
+            AnOrder.OrderPlacedDate = Convert.ToDateTime(txtOrderPlacedDate.Text);
+            //capture product quantity
+            AnOrder.ProductQuantity = Convert.ToInt32(txtProductQuantity.Text);
+            //capture unit price
+            AnOrder.UnitPrice = Convert.ToInt32(txtUnitPrice.Text);
+            //capture shipping date
+            AnOrder.ShippingDate = Convert.ToDateTime(txtShippingDate.Text);
+            //store customer in session object
+            Session["AnOrder"] = AnOrder;
+            //redirect to view page
+            Response.Write("OrderViewer.aspx");
+        }
+        else
+        {
+            //display error message
+            lblError.Text = Error;
+        }
     }
-
+   
 }
