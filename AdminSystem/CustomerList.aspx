@@ -8,9 +8,33 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div style="height: 464px">
             <asp:ListBox ID="lstCustomerList" runat="server" Height="404px" OnSelectedIndexChanged="lstCustomerList_SelectedIndexChanged" Width="420px"></asp:ListBox>
+            <br />
+            <asp:Button ID="btnAdd" runat="server" OnClick="Button1_Click" Text="Add" />
         </div>
     </form>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
+    <p>
+        &nbsp;</p>
 </body>
 </html>
