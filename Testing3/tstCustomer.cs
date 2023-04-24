@@ -215,6 +215,40 @@ namespace TestingCustomer_Framework
             Assert.AreEqual(0, FilteredNames.Count);
         }
 
+        [TestMethod]
+        public void ReportByCustomerNameFound()
+        {
+            //create instance of filtered data
+            clsCustomerCollection FilteredNames = new clsCustomerCollection();
+            //variable to store outcome
+            Boolean OK = true;
+            //apply a name that doesn't exist
+            FilteredNames.ReportByCustomerName("yyyyyy yyyyyy");
+            //check that correct number of records are found
+            if (FilteredNames.Count == 2)
+            {
+                //check that first record is ID 36
+                if (FilteredNames.CustomerList[0].CustomerID != 36)
+                {
+                    OK = false;
+                }
+
+                //check that first record is ID 37
+                if (FilteredNames.CustomerList[1]).CustomerID != 1)
+                {
+                    OK = false;
+                }
+            }
+
+            else
+            {
+                OK = false;
+            }
+            //test to see if there are no records
+            Assert.IsTrue(OK);
+            }
+    }
+
 
 
         [TestClass]
