@@ -227,14 +227,14 @@ namespace TestingCustomer_Framework
             //check that correct number of records are found
             if (FilteredNames.Count == 2)
             {
-                //check that first record is ID 36
-                if (FilteredNames.CustomerList[0].CustomerID != 36)
+                //check that first record is ID 28
+                if (FilteredNames.CustomerList[0].CustomerID != 28)
                 {
                     OK = false;
                 }
 
-                //check that first record is ID 37
-                if (FilteredNames.CustomerList[1]).CustomerID != 1)
+                //check that first record is ID 29
+                if (FilteredNames.CustomerList[1].CustomerID != 29)
                 {
                     OK = false;
                 }
@@ -1112,11 +1112,10 @@ namespace TestingCustomer_Framework
 
 
         }
-    }
 }
 
-      
-        
+
+
 
 
 
