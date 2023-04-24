@@ -62,16 +62,122 @@ namespace Testing1
             Assert.AreEqual(AllOrder.ThisOrder, TestOrder);
         }
         [TestMethod]
-        public void CountProperty()
+        public void ListAndCountPropertyOK()
         {
-            //create an instance of the class we want to creat
+            //create an instance of a class
             clsOrderCollection AllOrder = new clsOrderCollection();
-            //create some test data to assign to the property
-            Int32 SomeCount = 0;
-            //assign the data to the property
-            AllOrder.Count = SomeCount;
-            //test to see that the two values are the same
-            Assert.AreEqual(AllOrder.Count, SomeCount);
+            //create some test data 
+            List<clsOrder> TestList = new List<clsOrder>();
+            //add item and create data item in list
+            clsOrder TestItem = new clsOrder();
+            //set properties
+            TestItem.OrderID = 1;
+            TestItem.ProductQuantity = 10;
+            TestItem.UnitPrice = (int)109.99;
+            TestItem.OrderVerification = true;
+            TestItem.OrderPlacedDate = DateTime.Now.Date;
+            TestItem.ShippingDate = DateTime.Now.Date.AddDays(5);
+            //add item to test list
+            TestList.Add(TestItem);
+            //assign data to the property
+            AllOrder.OrderList = TestList;
+            //test to see if values are the same
+            Assert.AreEqual(AllOrder.Count, TestList.Count);
+        }
+        [TestMethod]
+        public void AddMethodOK()
+        {
+            //create an intance of class to create
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //create item of test data
+            clsOrder TestItem = new clsOrder();
+            //variable to store primary key
+            Int32 PrimaryKey = 0;
+            //set properties
+            TestItem.OrderID = 1;
+            TestItem.ProductQuantity = 10;
+            TestItem.UnitPrice = (int)109.99;
+            TestItem.OrderVerification = true;
+            TestItem.OrderPlacedDate = DateTime.Now.Date;
+            TestItem.ShippingDate = DateTime.Now.Date.AddDays(5);
+            //set ThisOrder to test data
+            AllOrder.ThisOrder = TestItem;
+            //add record
+            PrimaryKey = AllOrder.Add();
+            //set the primary key of test data
+            TestItem.OrderID = PrimaryKey;
+            //find record
+            AllOrder.ThisOrder.Find(PrimaryKey);
+            //test to see if two values are the same
+            Assert.AreEqual(AllOrder.ThisOrder, TestItem);
+        }
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instance of the class we wanto to create
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //create item of test data
+            clsOrder TestItem = new clsOrder();
+            //var to store the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.Active = true;
+            TestItem.ProductQuantity = 10;
+            TestItem.UnitPrice = (int)109.99;
+            TestItem.OrderVerification = true;
+            TestItem.OrderPlacedDate = DateTime.Now.Date;
+            TestItem.ShippingDate = DateTime.Now.Date.AddDays(5);
+            //set ThisOrder to the test data
+            AllOrder.ThisOrder = TestItem;
+            //add the record
+            PrimaryKey = AllOrder.Add();
+            //set the primary key of the test data
+            TestItem.OrderID = PrimaryKey;
+            //modify the test data
+            TestItem.Active = false;
+            TestItem.ProductQuantity = 5;
+            TestItem.UnitPrice = (int)5.59;
+            TestItem.OrderVerification = false;
+            TestItem.OrderPlacedDate = DateTime.Now.Date;
+            TestItem.ShippingDate = DateTime.Now.Date.AddDays(10);
+            //set the record based on the new test data
+            AllOrder.ThisOrder = TestItem;
+            //update the record
+            AllOrder.Update();
+            //find the record
+            AllOrder.ThisOrder.Find(PrimaryKey);
+            //test to see ThisOrder matches the test data
+            Assert.AreEqual(AllOrder.ThisOrder, TestItem);
+        }
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create an instance of the class we want to create
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //create the item of test data
+            clsOrder TestItem = new clsOrder();
+            //var to store the primary keyt
+            Int32 PrimaryKey = 0;
+            TestItem.Active = true;
+            TestItem.ProductQuantity = 10;
+            TestItem.UnitPrice = (int)109.99;
+            TestItem.OrderVerification = true;
+            TestItem.OrderPlacedDate = DateTime.Now.Date;
+            TestItem.ShippingDate = DateTime.Now.Date.AddDays(5);
+            //set ThisOrder to the test data
+            AllOrder.ThisOrder = TestItem;
+            //add the record
+            PrimaryKey = AllOrder.Add();
+            //set the primary key of the test data
+            TestItem.OrderID = PrimaryKey;
+            //find the rectord
+            AllOrder.ThisOrder.Find(PrimaryKey);
+            //delete the record
+            AllOrder.Delete();
+            //now find the record
+            Boolean Found = AllOrder.ThisOrder.Find(PrimaryKey);
+            //test to see that the record was not found
+            Assert.IsFalse(Found);
         }
     }
     [TestClass]
@@ -146,7 +252,7 @@ namespace Testing1
             //assign some test data to assign to the property
             double TestData = 9.99;
             //assign the data to the property
-            AnOrder.UnitPrice = (int)TestData;
+            AnOrder.UnitPrice = TestData;
             //test to see if the values are the same
             Assert.AreEqual(AnOrder.UnitPrice, TestData);
         }
@@ -172,14 +278,14 @@ namespace Testing1
             //Boolean variable to store the results of the validation
             Boolean Found = false;
             //create some test data to use with the method
-            Int32 OrderNo = 18;
+            Int32 OrderID = 18;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(OrderID);
             //test to see if the result is true
             Assert.IsTrue(Found);
         }
         [TestMethod]
-        public void TestOrderNoFound()
+        public void TestOrderIDFound()
         {
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
@@ -188,9 +294,9 @@ namespace Testing1
             //Boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 18;
+            Int32 OrderID = 18;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(OrderID);
             //check the order no
             if (AnOrder.OrderID != 18)
             {
@@ -210,9 +316,9 @@ namespace Testing1
             //Boolean variable to record if the data is ok(assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 18;
+            Int32 OrderID = 18;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(OrderID);
             //check the property
             if (AnOrder.OrderPlacedDate != Convert.ToDateTime("16/09/2015"))
             {
@@ -232,9 +338,9 @@ namespace Testing1
             //Boolean variable to record if the data is ok(assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 18;
+            Int32 OrderID = 18;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(OrderID);
             //check the property
             if (AnOrder.ShippingDate != Convert.ToDateTime("23/09/2015"))
             {
@@ -254,9 +360,9 @@ namespace Testing1
             //boolean variable to record if the data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 18;
+            Int32 OrderID = 18;
             //invoke the metho
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(OrderID);
             //check the property
             if (AnOrder.OrderVerification != true)
             {
@@ -276,9 +382,9 @@ namespace Testing1
             //Boolean varaible to record if the data is OK(assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 18;
+            Int32 OrderID = 18;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(OrderID);
             //check the property
             if (AnOrder.ProductQuantity != 1)
             {
@@ -298,9 +404,9 @@ namespace Testing1
             //Boolean variable to record if the data is ok
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 18;
+            Int32 OrderID = 18;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(OrderID);
             //check the property
             if (AnOrder.UnitPrice != 5.99)
             {
@@ -319,9 +425,9 @@ namespace Testing1
             //boolean variable to record if data is OK (assume it is)
             Boolean OK = true;
             //create some test data to use with the method
-            Int32 OrderNo = 18;
+            Int32 OrderID = 18;
             //invoke the method
-            Found = AnOrder.Find(OrderNo);
+            Found = AnOrder.Find(OrderID);
             //check the property
             if (AnOrder.Active != true)
             {

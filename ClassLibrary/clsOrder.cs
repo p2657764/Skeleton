@@ -3,21 +3,21 @@
 namespace ClassLibrary
 {
     public class clsOrder
-    {
-        //private data member for the order no property
-        private Int32 mOrderNo;
+    { 
+        //private data member for the Orderid
+        private Int32 mOrderID;
         //OrderID public property
         public Int32 OrderID
         { 
             get
             {
                 //this line of code sends data out of the property
-                return mOrderNo;
+                return mOrderID;
             }
             set
             {
                 //this line of code allows data into the property
-                mOrderNo = value;
+                mOrderID = value;
             }
         }
 
@@ -79,8 +79,8 @@ namespace ClassLibrary
             }
         }
 
-        private Int32 mUnitPrice;
-        public Int32 UnitPrice
+        private double mUnitPrice;
+        public double UnitPrice
         {
             get
             {
@@ -170,19 +170,19 @@ namespace ClassLibrary
             //return any error messages
             return Error;
         }
-        public bool Find(int OrderNo)
+        public bool Find(int OrderID)
         {
             //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter for the address no to the search for
-            DB.AddParameter("@OrderNo", OrderNo);
+            DB.AddParameter("@OrderID", OrderID);
             //execute the stored procedure
-            DB.Execute("sproc_tblOrder_FilterByOrderNo");
+            DB.Execute("sproc_tblOrder_FilterByOrderID");
             //if one record is found (there should be either one or zero!)
             if (DB.Count == 1)
             {
                 //copy the data from the database to the private data members
-                mOrderNo = Convert.ToInt32(DB.DataTable.Rows[0]["OrderNo"]);
+                mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
                 mOrderPlacedDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderPlacedDate"]);
                 mOrderVerification = Convert.ToBoolean(DB.DataTable.Rows[0]["OrderVerification"]);
                 mProductQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["ProductQuantity"]);
