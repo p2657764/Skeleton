@@ -56,35 +56,14 @@ namespace ClassLibrary
         //constructor for the class
         public clsCustomerCollection()
         {
-            //variable for index
-            Int32 Index = 0;
-            //variable to store record count
-            Int32 RecordCount = 0;
-            //create instance of data connection
+            //object for data connection
             clsDataConnection DB = new clsDataConnection();
             //execute stored procedure
             DB.Execute("sproc_tblCustomer_SelectAll");
-            //get count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank customer
-                clsCustomer ACustomer = new clsCustomer();
-                //read fields from current record
-                ACustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
-                ACustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
-                ACustomer.AddressLine1 = Convert.ToString(DB.DataTable.Rows[Index]["AddressLine1"]);
-                ACustomer.PostCode = Convert.ToString(DB.DataTable.Rows[Index]["PostCode"]);
-                ACustomer.EmailAddress = Convert.ToString(DB.DataTable.Rows[Index]["EmailAddress"]);
-                ACustomer.EmailVerification = Convert.ToBoolean(DB.DataTable.Rows[Index]["EmailVerification"]);
-                ACustomer.AccountCreationDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["AccountCreationDate"]);
-                //add record to private data member
-                mCustomerList.Add(ACustomer);
-                //points to next record
-                Index++;
-            }
+            //populate array list with data table
+            PopulateArray(DB);
         }
+    }
 
         public int Add()
         {
@@ -133,6 +112,45 @@ namespace ClassLibrary
         public void ReportByCustomerName(string CustomerName)
         {
             //fileters records based on full or partial name
+            //connect to database
+            clsDataConnection DB = new clsDataConnection();
+            //send CustomerName parameter to database
+            DB.AddParameter("@CustomerName", CustomerName);
+            //execture stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByCustomerName");
+            //populate arry list with data table 
+            PopulateArray(DB);
+        }
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates array list based on data table in parameter DB
+            //variable for index
+            Int32 Index = 0;
+            //var to store record count
+            Int32 RecordCount;
+            //get count of records
+            RecordCount = DB.Count;
+            //clear private array list
+            mCustomerList = new List<clsCustomer>();
+            //while records to process
+            while (Index < RecordCount)
+            {
+                //create blank customer
+                clsCustomer ACustomer = new clsCustomer();
+                //read in from current record
+                ACustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
+                ACustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+                ACustomer.AddressLine1 = Convert.ToString(DB.DataTable.Rows[Index]["AddressLine1"]);
+                ACustomer.PostCode = Convert.ToString(DB.DataTable.Rows[Index]["PostCode"]);
+                ACustomer.EmailAddress = Convert.ToString(DB.DataTable.Rows[Index]["EmailAddress"]);
+                ACustomer.EmailVerification = Convert.ToBoolean(DB.DataTable.Rows[Index]["EmailVerification"]);
+                ACustomer.AccountCreationDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["AccountCreationDate"]);
+                //add record to private data member
+                mCustomerList.Add(ACustomer);
+                //point to next record
+                Index++;
+            }
         }
     }
-}
+
