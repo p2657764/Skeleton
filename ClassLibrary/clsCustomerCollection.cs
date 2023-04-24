@@ -129,5 +129,10 @@ namespace ClassLibrary
             //execute stored procedure
             DB.Execute("sproc_tblCustomer_Delete");
         }
+
+        public void ReportByCustomerName(string CustomerName)
+        {
+            //fileters records based on full or partial name
+        }
     }
 }

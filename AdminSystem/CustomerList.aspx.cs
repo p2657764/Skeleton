@@ -74,23 +74,22 @@ public partial class _1_List : System.Web.UI.Page
 
     protected void btnDelete_Click(object sender, EventArgs e)
     {
-        //variable to store primary key value of record to delete
+        //var to store the primary key value of the record to be deleted
         Int32 CustomerID;
-        //if record has been seleted from list
+        //if a record has been selected from the list
         if (lstCustomerList.SelectedIndex != -1)
         {
-            //get primary key value of record to delete
+            //get the primary key value of the record to delete
             CustomerID = Convert.ToInt32(lstCustomerList.SelectedValue);
-            //store data in session object
+            //store the data in the session object
             Session["CustomerID"] = CustomerID;
-            //redirect to delete page
+            //redirect to the delete page
             Response.Redirect("CustomerConfirmDelete.aspx");
         }
-
-        else //if no record found
+        else //if no record has been selected
         {
-            //display error
-            lblError.Text = "Please select a record to delete from this list";
+            //display an error
+            lblError.Text = "Please select a record to delete from the list";
         }
     }
 }
