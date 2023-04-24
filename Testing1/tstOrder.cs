@@ -1,9 +1,79 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace Testing1
 {
+    [TestClass]
+    public class tstOrderCollection
+    {
+        [TestMethod]
+        public void InstanceOK()
+        {
+            //create an instance of the class we want to create
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //test to see that it exists
+            Assert.IsNotNull(AllOrder);
+        }
+        [TestMethod]
+        public void OrderListOK()
+        {
+            //create instance of class
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //create some test data e.g. objects
+            List<clsOrder> TestList = new List<clsOrder>();
+            //add item and create data item in list
+            clsOrder TestItem = new clsOrder();
+            //set properties
+            TestItem.Active = true;
+            TestItem.OrderID = 1;
+            TestItem.ProductQuantity = 10;
+            TestItem.UnitPrice = (int)109.99;
+            TestItem.OrderVerification = true;
+            TestItem.OrderPlacedDate = DateTime.Now.Date;
+            TestItem.ShippingDate = DateTime.Now.Date.AddDays(5);
+            //add item to test list
+            TestList.Add(TestItem);
+            //assign data to the property
+            AllOrder.OrderList = TestList;
+            //test to see if values are the same
+            Assert.AreEqual(AllOrder.OrderList, TestList);
+
+        }
+        [TestMethod]
+        public void ThisOrderPropertyOK()
+        {
+            //create an instance of the class we want to create
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //create some test data to assign to the property
+            clsOrder TestOrder = new clsOrder();
+            //set the properties of the test object
+            TestOrder.Active = true;
+            TestOrder.OrderID = 1;
+            TestOrder.ProductQuantity = 10;
+            TestOrder.UnitPrice = (int)109.99;
+            TestOrder.OrderVerification = true;
+            TestOrder.OrderPlacedDate = DateTime.Now.Date;
+            TestOrder.ShippingDate = DateTime.Now.Date.AddDays(5);
+            //assign the data to the property
+            AllOrder.ThisOrder = TestOrder;
+            //test to see that the two values are the same
+            Assert.AreEqual(AllOrder.ThisOrder, TestOrder);
+        }
+        [TestMethod]
+        public void CountProperty()
+        {
+            //create an instance of the class we want to creat
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //create some test data to assign to the property
+            Int32 SomeCount = 0;
+            //assign the data to the property
+            AllOrder.Count = SomeCount;
+            //test to see that the two values are the same
+            Assert.AreEqual(AllOrder.Count, SomeCount);
+        }
+    }
     [TestClass]
     public class tstOrder
     {
@@ -21,31 +91,6 @@ namespace Testing1
             //test too see that it exists
             Assert.IsNotNull(AnOrder);
         }
-        [TestMethod]
-        public void OrderListOK()
-        {
-            //create instance of class
-            clsOrderCollection AllOrder = new clsOrderCollection();
-            //create some test data e.g. objects
-            List<clsOrder> TestList = new List<clsOrder>();
-            //add item and create data item in list
-            clsOrder TestItem = new clsOrder();
-            //set properties
-            TestItem.OrderID = 1;
-            TestItem.ProductQuantity = 10;
-            TestItem.UnitPrice = (int)109.99;
-            TestItem.OrderVerification = true;
-            TestItem.OrderPlacedDate = DateTime.Now.Date;
-            TestItem.ShippingDate = DateTime.Now.Date.AddDays(5);
-            //add item to test list
-            TestList.Add(TestItem);
-            //assign data to the property
-            AllOrder.OrderList = TestList;
-            //test to see if values are the same
-            Assert.AreEqual(AllOrder.OrderList, TestList);
-
-        }
-        [TestMethod]
         public void ActivePropertyOK()
         {
             //creates an instance of the class we want to create
@@ -293,7 +338,7 @@ namespace Testing1
             //strin variable to store any error message
             String Error = "";
             //invoke the method
-            Error = AnOrder.Valid(OrderPlacedDate, ProductQuantity, UnitPrice, ShippingDate);
+            Error = AnOrder.Valid(OrderPlacedDate, Convert.ToString(ProductQuantity), Convert.ToString(UnitPrice), ShippingDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -306,8 +351,9 @@ namespace Testing1
             String Error = "";
             //create some test data to pass to the method
             int ProductQuantity = 1; //this should be ok
+
             //invoke the method
-            Error = AnOrder.Valid(OrderPlacedDate, ProductQuantity, UnitPrice, ShippingDate);
+            Error = AnOrder.Valid(OrderPlacedDate, Convert.ToString(ProductQuantity), Convert.ToString(UnitPrice), ShippingDate); ;
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -321,7 +367,7 @@ namespace Testing1
             //create some test data to pass to the method
             int ProductQuantity = 2; //this should be ok
             //invoke the method
-            Error = AnOrder.Valid(OrderPlacedDate, ProductQuantity, UnitPrice, ShippingDate);
+            Error = AnOrder.Valid(OrderPlacedDate, Convert.ToString(ProductQuantity), Convert.ToString(UnitPrice), ShippingDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -341,7 +387,7 @@ namespace Testing1
             //convert the date variable to string variable
             string OrderPlacedDate = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(OrderPlacedDate, ProductQuantity, UnitPrice, ShippingDate);
+            Error = AnOrder.Valid(OrderPlacedDate, Convert.ToString(ProductQuantity), Convert.ToString(UnitPrice), ShippingDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -361,7 +407,7 @@ namespace Testing1
             //convert the date variable to string variable
             string OrderPlacedDate = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(OrderPlacedDate, ProductQuantity, UnitPrice, ShippingDate);
+            Error = AnOrder.Valid(OrderPlacedDate, Convert.ToString(ProductQuantity), Convert.ToString(UnitPrice), ShippingDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -379,7 +425,7 @@ namespace Testing1
             //convert the date variable to string variable
             string OrderPlacedDate = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(OrderPlacedDate, ProductQuantity, UnitPrice, ShippingDate);
+            Error = AnOrder.Valid(OrderPlacedDate, Convert.ToString(ProductQuantity), Convert.ToString(UnitPrice), ShippingDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -399,7 +445,7 @@ namespace Testing1
             //convert the date variable to string variable
             string OrderPlacedDate = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(OrderPlacedDate, ProductQuantity, UnitPrice, ShippingDate);
+            Error = AnOrder.Valid(OrderPlacedDate, Convert.ToString(ProductQuantity), Convert.ToString(UnitPrice), ShippingDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -419,7 +465,7 @@ namespace Testing1
             //convert the date variable to string variable
             string OrderPlacedDate = TestDate.ToString();
             //invoke the method
-            Error = AnOrder.Valid(OrderPlacedDate, ProductQuantity, UnitPrice, ShippingDate);
+            Error = AnOrder.Valid(OrderPlacedDate, Convert.ToString(ProductQuantity), Convert.ToString(UnitPrice), ShippingDate);
             //test to see that the result is correct
             Assert.AreEqual(Error, "");
         }
@@ -434,7 +480,7 @@ namespace Testing1
             //set the DateAdded to a non date value
             string OrderPlacedDate = "This is not a date!";
             //invoke the method
-            Error = AnOrder.Valid(OrderPlacedDate, ProductQuantity, UnitPrice, ShippingDate);
+            Error = AnOrder.Valid(OrderPlacedDate, Convert.ToString(ProductQuantity), Convert.ToString(UnitPrice), ShippingDate);
             //test to see that the result is correct
             Assert.AreNotEqual(Error, "");
         }
