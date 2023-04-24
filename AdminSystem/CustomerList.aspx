@@ -6,12 +6,18 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
+<body style="height: 563px; width: 424px">
     <form id="form1" runat="server">
-        <div style="height: 464px">
+        <div style="height: 564px; width: 424px;">
             <asp:ListBox ID="lstCustomerList" runat="server" Height="404px" OnSelectedIndexChanged="lstCustomerList_SelectedIndexChanged" Width="420px"></asp:ListBox>
             <br />
-            <asp:Button ID="btnAdd" runat="server" OnClick="Button1_Click" Text="Add" />
+            <br />
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" />
+            <asp:Button ID="btnEdit" runat="server" OnClick="Button1_Click" Text="Edit" />
+            <br />
+            <br />
+            <br />
+            <asp:Label ID="lblError" runat="server" Text="[lblError]"></asp:Label>
         </div>
     </form>
     <p>

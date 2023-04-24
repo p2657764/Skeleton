@@ -116,6 +116,47 @@ namespace TestingCustomer_Framework
             //test to see if two values are the same
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
+
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create instance of class to create
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create item of test data
+            clsCustomer TestItem = new clsCustomer();
+            //var to store primary key
+            Int32 PrimaryKey = 0;
+            //set properties
+            TestItem.CustomerID = 1;
+            TestItem.CustomerName = "Antonio Moore";
+            TestItem.AddressLine1 = "1 Abbey Road";
+            TestItem.PostCode = "LE67 2JU";
+            TestItem.EmailAddress = "antmo297@gmial.com";
+            TestItem.AccountCreationDate = DateTime.Now.Date;
+            TestItem.EmailVerification = true;
+            //set ThisCustomer to test data
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+            //set primary key of test data
+            TestItem.CustomerID = PrimaryKey;
+            //modify test data
+            TestItem.CustomerID = 2;
+            TestItem.CustomerName = "John Apple";
+            TestItem.AddressLine1 = "2 Essex Grove";
+            TestItem.PostCode = "LE12 9NQ";
+            TestItem.EmailAddress = "john.apple@itmanagement.com";
+            TestItem.AccountCreationDate = DateTime.Now.Date;
+            TestItem.EmailVerification = false;
+            //set record based on new test data
+            AllCustomers.ThisCustomer = TestItem;
+            //update record
+            AllCustomers.Update();
+            //find record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //test to see ThisCustomer matches test data
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+        }
     }
 
     [TestClass]
