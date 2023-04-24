@@ -34,7 +34,8 @@
         <asp:TextBox ID="txtProductQuantity" runat="server" style="z-index: 1; left: 170px; top: 119px; position: absolute; width: 150px" height="22px"></asp:TextBox>
         <asp:TextBox ID="txtUnitPrice" runat="server" style="z-index: 1; left: 170px; top: 154px; position: absolute; width: 150px" height="22px"></asp:TextBox>
         <asp:TextBox ID="txtShippingDate" runat="server" style="z-index: 1; left: 170px; top: 186px; position: absolute; width: 150px" height="22px"></asp:TextBox>
-        <asp:TextBox ID="txtOrderNo" runat="server" style="z-index: 1; left: 172px; top: 13px; position: absolute; width: 145px"></asp:TextBox>
+        <asp:TextBox ID="txtOrderID" runat="server" style="z-index: 1; left: 172px; top: 13px; position: absolute; width: 145px"></asp:TextBox>
+        <asp:Button ID="btnAdd_Click" runat="server" OnClick="btnAdd_Click_Click" style="z-index: 1; left: 192px; top: 223px; position: absolute; margin-top: 0px" Text="Add" />
     </form>
 </body>
 </html>
