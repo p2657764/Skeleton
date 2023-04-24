@@ -157,7 +157,41 @@ namespace TestingCustomer_Framework
             //test to see ThisCustomer matches test data
             Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
         }
-    }
+
+        [TestMethod]
+        public void DeleteMethodOK()
+        {
+            //create instance of class to create
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create item of test data
+            clsCustomer TestItem = new clsCustomer();
+            //var to store primary key
+            Int32 PrimaryKey = 0;
+            //set properties
+            TestItem.CustomerID = 1;
+            TestItem.CustomerName = "Antonio Moore";
+            TestItem.AddressLine1 = "1 Abbey Road";
+            TestItem.PostCode = "LE67 2JU";
+            TestItem.EmailAddress = "antmo297@gmial.com";
+            TestItem.AccountCreationDate = DateTime.Now.Date;
+            TestItem.EmailVerification = true;
+            //set ThisCustomer to test data
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+            //set primary key of test data
+            TestItem.CustomerID = PrimaryKey;
+            //find record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //delete record
+            AllCustomers.Delete();
+            //find the record
+            Boolean Found = AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //test to see if record was not found
+            Assert.IsFalse(Found);
+        }
+
+
 
     [TestClass]
     public class tstCustomer
