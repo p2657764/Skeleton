@@ -9,6 +9,38 @@ namespace ClassLibrary
         List<clsCustomer> mCustomerList = new List<clsCustomer>();
         //private data member thisCustomer
         clsCustomer mThisCustomer = new clsCustomer();
+
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates array list based on data table in parameter DB
+            //variable for index
+            Int32 Index = 0;
+            //var to store record count
+            Int32 RecordCount;
+            //get count of records
+            RecordCount = DB.Count;
+            //clear private array list
+            mCustomerList = new List<clsCustomer>();
+            //while records to process
+            while (Index < RecordCount)
+            {
+                //create blank customer
+                clsCustomer ACustomer = new clsCustomer();
+                //read in from current record
+                ACustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
+                ACustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
+                ACustomer.AddressLine1 = Convert.ToString(DB.DataTable.Rows[Index]["AddressLine1"]);
+                ACustomer.PostCode = Convert.ToString(DB.DataTable.Rows[Index]["PostCode"]);
+                ACustomer.EmailAddress = Convert.ToString(DB.DataTable.Rows[Index]["EmailAddress"]);
+                ACustomer.EmailVerification = Convert.ToBoolean(DB.DataTable.Rows[Index]["EmailVerification"]);
+                ACustomer.AccountCreationDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["AccountCreationDate"]);
+                //add record to private data member
+                mCustomerList.Add(ACustomer);
+                //point to next record
+                Index++;
+            }
+        }
+
         public List<clsCustomer> CustomerList
         {
             get
@@ -63,7 +95,7 @@ namespace ClassLibrary
             //populate array list with data table
             PopulateArray(DB);
         }
-    }
+
 
         public int Add()
         {
@@ -121,36 +153,5 @@ namespace ClassLibrary
             //populate arry list with data table 
             PopulateArray(DB);
         }
-
-        void PopulateArray(clsDataConnection DB)
-        {
-            //populates array list based on data table in parameter DB
-            //variable for index
-            Int32 Index = 0;
-            //var to store record count
-            Int32 RecordCount;
-            //get count of records
-            RecordCount = DB.Count;
-            //clear private array list
-            mCustomerList = new List<clsCustomer>();
-            //while records to process
-            while (Index < RecordCount)
-            {
-                //create blank customer
-                clsCustomer ACustomer = new clsCustomer();
-                //read in from current record
-                ACustomer.CustomerID = Convert.ToInt32(DB.DataTable.Rows[Index]["CustomerID"]);
-                ACustomer.CustomerName = Convert.ToString(DB.DataTable.Rows[Index]["CustomerName"]);
-                ACustomer.AddressLine1 = Convert.ToString(DB.DataTable.Rows[Index]["AddressLine1"]);
-                ACustomer.PostCode = Convert.ToString(DB.DataTable.Rows[Index]["PostCode"]);
-                ACustomer.EmailAddress = Convert.ToString(DB.DataTable.Rows[Index]["EmailAddress"]);
-                ACustomer.EmailVerification = Convert.ToBoolean(DB.DataTable.Rows[Index]["EmailVerification"]);
-                ACustomer.AccountCreationDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["AccountCreationDate"]);
-                //add record to private data member
-                mCustomerList.Add(ACustomer);
-                //point to next record
-                Index++;
-            }
-        }
     }
-
+}
