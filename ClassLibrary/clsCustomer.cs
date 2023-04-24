@@ -147,7 +147,7 @@ namespace ClassLibrary
             if (customerName.Length > 25)
             {
                 //record the error
-                Error = Error + "The customer name must be less than 6 characters : ";
+                Error = Error + "The customer name must be less than 25 characters : ";
             }
 
             try
@@ -213,8 +213,6 @@ namespace ClassLibrary
             //return any error messages
             return Error;
         }
-
-
 
         public bool Find(int CustomerID)
         {

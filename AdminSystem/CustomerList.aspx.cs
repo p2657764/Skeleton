@@ -18,7 +18,7 @@ public partial class _1_List : System.Web.UI.Page
         }
     }
 
-    protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+    protected void lstCustomerList_SelectedIndexChanged(object sender, EventArgs e)
     {
 
     }
