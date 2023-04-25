@@ -51,28 +51,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
             ACustomer.EmailVerification = chkEmailVerification.Checked;
             //create new instance of customer collection
             clsCustomerCollection CustomerList = new clsCustomerCollection();
-
-            //if new record e.g. CustomerID = -1 then add data 
-            if (CustomerID == -1)
-            {
-                //set ThisCustomer property
-                CustomerList.ThisCustomer = ACustomer;
-                //add new record 
-                CustomerList.Add();
-            }
-            
-            //otherwise must be update
-            else
-            {
-                //find record to update
-                CustomerList.ThisCustomer.Find(CustomerID);
-                //set ThisCustomer property
-                CustomerList.ThisCustomer = ACustomer;
-                //update record 
-                CustomerList.Update();
-            }
+            //set ThisCustomer property
+            CustomerList.ThisCustomer = ACustomer;
+            //add new record 
+            CustomerList.Add();
             //redirect to list page
             Response.Redirect("CustomerList.aspx");
+            //update list box
+            DisplayCustomers();
+
         }
         else
         {
@@ -80,6 +67,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             lblError.Text = Error;
         }
     }
+
 
 
     protected void chkEmailVerification_CheckedChanged(object sender, EventArgs e)
@@ -103,6 +91,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Found == true)
         {
             //display value of properties in form
+            txtCustomerID.Text = ACustomer.CustomerID.ToString();
             txtCustomerName.Text = ACustomer.CustomerName;
             txtAddressLine1.Text = ACustomer.AddressLine1;
             txtPostCode.Text = ACustomer.PostCode;
@@ -126,5 +115,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtEmailAddress.Text = CustomerList.ThisCustomer.EmailAddress;
         chkEmailVerification.Checked = CustomerList.ThisCustomer.EmailVerification;
         txtAccountCreationDate.Text = CustomerList.ThisCustomer.AccountCreationDate.ToString();
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //redirect to list page
+        Response.Redirect("CustomerList.aspx");
     }
 }
