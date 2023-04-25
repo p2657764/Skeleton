@@ -8,13 +8,20 @@ using ClassLibrary;
 
 public partial class _1_List : System.Web.UI.Page
 {
+    //variable to store  primary  key -page level scope
+    Int32 OrderID;
+    string OrderPlacedDate;
     protected void Page_Load(object sender, EventArgs e)
     {
         //if this is the first time the page is displayed
+        OrderID = Convert.ToInt32(Session["OrderID"]);
         if (IsPostBack == false)
         {
-            //update the list box
-            DisplayOrders();
+            if (OrderID != -1)
+            {
+                //update the list box
+                DisplayOrders();
+            }
         }
     }
 
@@ -30,14 +37,6 @@ public partial class _1_List : System.Web.UI.Page
         lstOrderList.DataTextField = "OrderPlacedDate";
         //bind the data to the list
         lstOrderList.DataBind();
-    }
-
-    protected void btnAdd_Click1(object sender, EventArgs e)
-    {
-        //ctore -1 into the session object to indicate this is a new record
-        Session["OrderID"] = -1;
-        //redirect to the data entry page
-        Response.Redirect("OrdersDataEntry.aspx");
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)
@@ -79,5 +78,51 @@ public partial class _1_List : System.Web.UI.Page
             //display an error
             lblError.Text = "Please select a record to delete from the list";
         }
+    }
+
+    protected void btnAdd_Click(object sender, EventArgs e)
+    {
+        //ctore -1 into the session object to indicate this is a new record
+        Session["OrderID"] = -1;
+        //redirect to the data entry page
+        Response.Redirect("OrdersDataEntry.aspx");
+        //update list box
+        DisplayOrders();
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        //create instance of the class we want to create
+        clsOrderCollection Orders = new clsOrderCollection();
+        Orders.ReportByOrderPlacedDate(txtEnterAnOrderPlacedDate.Text);
+        lstOrderList.DataSource = Orders.OrderList;
+        //set the name of the primary key
+        lstOrderList.DataValueField = "OrderID";
+        //set name of field to display
+        lstOrderList.DataTextField = "OrderPlacedDate";
+        //bind data to list
+        lstOrderList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //create an instance of the order collection
+        clsOrderCollection Order = new clsOrderCollection();
+        Order.ReportByOrderPlacedDate("");
+        //clear any existing filter to tidy up the interface
+        txtEnterAnOrderPlacedDate.Text = "";
+        lstOrderList.DataSource = Order.OrderList;
+        //set the name of the primary key
+        lstOrderList.DataValueField = "OrderID";
+        //set the name of the fields to display
+        lstOrderList.DataTextField = "OrderPlacedDate";
+        //bidn the data to the list
+        lstOrderList.DataBind();
+    }
+
+
+    protected void txtEnterAName_TextChanged(object sender, EventArgs e)
+    {
+
     }
 }

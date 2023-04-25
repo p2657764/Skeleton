@@ -179,6 +179,59 @@ namespace Testing1
             //test to see that the record was not found
             Assert.IsFalse(Found);
         }
+        [TestMethod]
+        public void ReportByOrderPlacedDateMethodOK()
+        {
+            //create an instance of the class containig unfiltered results
+            clsOrderCollection AllOrder = new clsOrderCollection();
+            //create an instance of the filtered data
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            //apply a blank string (should return all records)
+            FilteredOrders.ReportByOrderPlacedDate("");
+            //test to see that the two values are thes same
+            Assert.AreEqual(AllOrder.Count, FilteredOrders.Count);
+        }
+        [TestMethod]
+        public void ReportByOrderPlacedDateNoneFound()
+        {
+            //create an instnce of the filtered data
+            clsOrderCollection FilteredOrders = new clsOrderCollection();
+            //apply a order placed date that doesnt exist
+            FilteredOrders.ReportByOrderPlacedDate("32/13/2022");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredOrders.Count);
+        }
+        [TestMethod]
+        public void ReportByOrderPlacedDateFound()
+        {
+            //create an instance of the filktered data
+            clsOrderCollection FilteredOrder = new clsOrderCollection();
+            //var to store outcome
+            Boolean OK = true;
+            //apply a order placed date that does exist
+            FilteredOrder.ReportByOrderPlacedDate("01/01/2001");
+            //check that the correct number of records are found
+            if (FilteredOrder.Count == 2)
+            {
+                //check that the first record id is 44
+                if (FilteredOrder.OrderList[0].OrderID != 44)
+                {
+                    OK = false;
+                }
+                //check that the first record is ID 49
+                if(FilteredOrder.OrderList[1].OrderID != 49)
+                {
+                    OK = false;
+                }
+            }
+            else
+            {
+                OK = false;
+            }
+            //test to see that there are no records
+            Assert.IsTrue(OK);
+        }
+
     }
     [TestClass]
     public class tstOrder
@@ -595,3 +648,14 @@ namespace Testing1
 
 
 
+//CREATE PROCEDURE [dbo].sproc_tlbOrder_FilterByOrderPlacedDate
+//--this stored procedure uses the like function to find order placed date that matches the value
+//--stored in the parameter orderplaceddate
+//--the stored procedure doesnt return a value
+
+
+//	--declare the parameter as date
+//	@OrderPlacedDate date
+//AS
+//	--select all fields from any records that have a orderplaced date like this orderplaceddate
+//	select * from tblOrder where OrderPlacedDate like @OrderPlacedDate+'%';

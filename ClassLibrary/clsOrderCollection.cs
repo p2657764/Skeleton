@@ -60,25 +60,8 @@ namespace ClassLibrary
             clsDataConnection DB = new clsDataConnection();
             //executre stored procedure
             DB.Execute("sproc_tblOrder_SelectAll");
-            //get count of records
-            RecordCount = DB.Count;
-            //while there are records to process
-            while (Index < RecordCount)
-            {
-                //create a blank order
-                clsOrder AnOrder = new clsOrder();
-                //read fields from current record
-                AnOrder.OrderID = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderID"]);
-                AnOrder.OrderPlacedDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderPlacedDate"]);
-                AnOrder.OrderVerification = Convert.ToBoolean(DB.DataTable.Rows[Index]["OrderVerification"]);
-                AnOrder.ProductQuantity = Convert.ToInt32(DB.DataTable.Rows[Index]["ProductQuantity"]);
-                AnOrder.UnitPrice = Convert.ToInt32(DB.DataTable.Rows[Index]["UnitPrice"]);
-                AnOrder.ShippingDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["ShippingDate"]);
-                //add record to private data memeber
-                mOrderList.Add(AnOrder);
-                //points to next record
-                Index++;
-            }
+            //populate the array list with the data table
+            PopulateArray(DB);
         }
         public int Add()
         {
@@ -117,6 +100,49 @@ namespace ClassLibrary
             DB.AddParameter("OrderID", mThisOrder.OrderID);
             //execute the stored procedure
             DB.Execute("sproc_tblOrder_Delete");
+        }
+
+        public void ReportByOrderPlacedDate(string OrderPlacedDate)
+        {
+            //filters the records based ona  full or partial orderplaceddate
+            //connect tot database
+            clsDataConnection DB = new clsDataConnection();
+            //send the orderplaceddate paramaeter to the database
+            DB.AddParameter("@OrderPlacedDate", OrderPlacedDate);
+            //execute the stored procedure
+            DB.Execute("sproc_tblOrder_FilterByOrderPlacedDate");
+            //populate the array list with the data table
+            PopulateArray(DB);
+        }
+        void PopulateArray(clsDataConnection DB)
+        {
+            //populates the array list based on the data table in the parameter DB
+            //var to the index
+            Int32 Index = 0;
+            //var to store the record count
+            Int32 RecordCount;
+            //get the count of records
+            RecordCount = DB.Count;
+            //clear the prvate array list
+            mOrderList = new List<clsOrder>();
+            //while there are records to process
+            while (Index < RecordCount)
+            {
+                //create a blank order
+                clsOrder AnOrder = new clsOrder();
+                //read fields from current record
+                AnOrder.Active = Convert.ToBoolean(DB.DataTable.Rows[Index]["Active"]);
+                AnOrder.OrderID = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderID"]);
+                AnOrder.OrderPlacedDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderPlacedDate"]);
+                AnOrder.OrderVerification = Convert.ToBoolean(DB.DataTable.Rows[Index]["OrderVerification"]);
+                AnOrder.ProductQuantity = Convert.ToInt32(DB.DataTable.Rows[Index]["ProductQuantity"]);
+                AnOrder.UnitPrice = Convert.ToInt32(DB.DataTable.Rows[Index]["UnitPrice"]);
+                AnOrder.ShippingDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["ShippingDate"]);
+                //add record to private data memeber
+                mOrderList.Add(AnOrder);
+                //points to next record
+                Index++;
+            }
         }
     }
 }
