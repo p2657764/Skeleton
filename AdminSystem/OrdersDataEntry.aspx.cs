@@ -61,7 +61,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
             //capture product quantity
             AnOrder.ProductQuantity = Convert.ToInt32(txtProductQuantity.Text);
             //capture unit price
-            AnOrder.UnitPrice = Convert.ToInt32(txtUnitPrice.Text);
+            AnOrder.UnitPrice = Convert.ToDecimal(txtUnitPrice.Text);
             //capture shipping date
             AnOrder.ShippingDate = Convert.ToDateTime(txtShippingDate.Text);
             //capture active

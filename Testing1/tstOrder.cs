@@ -26,10 +26,9 @@ namespace Testing1
             //add item and create data item in list
             clsOrder TestItem = new clsOrder();
             //set properties
-            TestItem.Active = true;
             TestItem.OrderID = 1;
             TestItem.ProductQuantity = 10;
-            TestItem.UnitPrice = (int)109.99;
+            TestItem.UnitPrice = (decimal)109.99;
             TestItem.OrderVerification = true;
             TestItem.OrderPlacedDate = DateTime.Now.Date;
             TestItem.ShippingDate = DateTime.Now.Date.AddDays(5);
@@ -49,7 +48,6 @@ namespace Testing1
             //create some test data to assign to the property
             clsOrder TestOrder = new clsOrder();
             //set the properties of the test object
-            TestOrder.Active = true;
             TestOrder.OrderID = 1;
             TestOrder.ProductQuantity = 10;
             TestOrder.UnitPrice = (int)109.99;
@@ -121,7 +119,6 @@ namespace Testing1
             //var to store the primary key
             Int32 PrimaryKey = 0;
             //set its properties
-            TestItem.Active = true;
             TestItem.ProductQuantity = 10;
             TestItem.UnitPrice = (int)109.99;
             TestItem.OrderVerification = true;
@@ -134,7 +131,6 @@ namespace Testing1
             //set the primary key of the test data
             TestItem.OrderID = PrimaryKey;
             //modify the test data
-            TestItem.Active = false;
             TestItem.ProductQuantity = 5;
             TestItem.UnitPrice = (int)5.59;
             TestItem.OrderVerification = false;
@@ -158,7 +154,6 @@ namespace Testing1
             clsOrder TestItem = new clsOrder();
             //var to store the primary keyt
             Int32 PrimaryKey = 0;
-            TestItem.Active = true;
             TestItem.ProductQuantity = 10;
             TestItem.UnitPrice = (int)109.99;
             TestItem.OrderVerification = true;
@@ -240,7 +235,7 @@ namespace Testing1
         string ShippingDate = DateTime.Now.AddDays(5).ToString();
         bool OrderVerification = true;
         int ProductQuantity = 1;
-        double UnitPrice = 5.99;
+        decimal UnitPrice = (decimal)5.99;
 
         [TestMethod]
         public void InstanceOK()
@@ -303,7 +298,7 @@ namespace Testing1
             //create an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //assign some test data to assign to the property
-            double TestData = 9.99;
+            decimal TestData = (decimal)9.99;
             //assign the data to the property
             AnOrder.UnitPrice = TestData;
             //test to see if the values are the same
@@ -461,7 +456,7 @@ namespace Testing1
             //invoke the method
             Found = AnOrder.Find(OrderID);
             //check the property
-            if (AnOrder.UnitPrice != 5.99)
+            if (AnOrder.UnitPrice != (decimal)5.99)
             {
                 OK = false;
             }
@@ -646,16 +641,3 @@ namespace Testing1
     }
 }
 
-
-
-//CREATE PROCEDURE [dbo].sproc_tlbOrder_FilterByOrderPlacedDate
-//--this stored procedure uses the like function to find order placed date that matches the value
-//--stored in the parameter orderplaceddate
-//--the stored procedure doesnt return a value
-
-
-//	--declare the parameter as date
-//	@OrderPlacedDate date
-//AS
-//	--select all fields from any records that have a orderplaced date like this orderplaceddate
-//	select * from tblOrder where OrderPlacedDate like @OrderPlacedDate+'%';

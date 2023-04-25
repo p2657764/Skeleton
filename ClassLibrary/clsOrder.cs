@@ -79,8 +79,8 @@ namespace ClassLibrary
             }
         }
 
-        private double mUnitPrice;
-        public double UnitPrice
+        private decimal mUnitPrice;
+        public decimal UnitPrice
         {
             get
             {
@@ -186,7 +186,7 @@ namespace ClassLibrary
                 mOrderPlacedDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderPlacedDate"]);
                 mOrderVerification = Convert.ToBoolean(DB.DataTable.Rows[0]["OrderVerification"]);
                 mProductQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["ProductQuantity"]);
-                mUnitPrice = Convert.ToInt32(DB.DataTable.Rows[0]["UnitPrice"]);
+                mUnitPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["UnitPrice"]);
                 mShippingDate = Convert.ToDateTime(DB.DataTable.Rows[0]["ShippingDate"]);
 
                 //return that everything worked ok
