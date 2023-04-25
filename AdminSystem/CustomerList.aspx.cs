@@ -10,6 +10,7 @@ public partial class _1_List : System.Web.UI.Page
 {
     //variable to store primary key - page level scope
     Int32 CustomerID;
+    string CustomerName;
     protected void Page_Load(object sender, EventArgs e)
     {
         //if this is first time page is displayed
@@ -22,11 +23,6 @@ public partial class _1_List : System.Web.UI.Page
                 DisplayCustomers();
             }
         }
-    }
-
-    protected void lstCustomerList_SelectedIndexChanged(object sender, EventArgs e)
-    {
-
     }
 
     void DisplayCustomers()
@@ -49,6 +45,8 @@ public partial class _1_List : System.Web.UI.Page
         Session["CustomerID"] = -1;
         //redirect to data entry page
         Response.Redirect("CustomerDataEntry.aspx");
+        //update list box
+        DisplayCustomers();
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)
@@ -85,12 +83,55 @@ public partial class _1_List : System.Web.UI.Page
             Session["CustomerID"] = CustomerID;
             //redirect to the delete page
             Response.Redirect("CustomerConfirmDelete.aspx");
+            //update list box
+            DisplayCustomers();
         }
         else //if no record has been selected
         {
             //display an error
             lblError.Text = "Please select a record to delete from the list";
         }
+    }
+
+    protected void btnApply_Click(object sender, EventArgs e)
+    {
+        //create instance
+        clsCustomerCollection Customers = new clsCustomerCollection();
+        Customers.ReportByCustomerName(txtEnterAName.Text);
+        lstCustomerList.DataSource = Customers.CustomerList;
+        //set name of primary key
+        lstCustomerList.DataValueField = "CustomerID";
+        //set name of field to display
+        lstCustomerList.DataTextField = "CustomerName";
+        //bind data to list
+        lstCustomerList.DataBind();
+    }
+
+    protected void btnClear_Click(object sender, EventArgs e)
+    {
+        //create instance
+        clsCustomerCollection Customers = new clsCustomerCollection();
+        Customers.ReportByCustomerName(txtEnterAName.Text);
+        Customers.ReportByCustomerName("");
+        //clear existing filter
+        txtEnterAName.Text = "";
+        lstCustomerList.DataSource = Customers.CustomerList;
+        //set name of primary key
+        lstCustomerList.DataValueField = "CustomerID";
+        //set name of field to display
+        lstCustomerList.DataTextField = "CustomerName";
+        //bind data to list
+        lstCustomerList.DataBind();
+    }
+
+    protected void txtEnterAName_TextChanged(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void lstCustomerList_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }
     

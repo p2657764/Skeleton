@@ -6,11 +6,12 @@
 <head runat="server">
     <title></title>
 </head>
-<body style="height: 347px; width: 403px;">
+<body style="height: 347px; width: 432px;">
     <form id="form1" runat="server">
         <div style="height: 345px">
             <asp:Label ID="lblCustomerID" runat="server" Text="Customer ID" Width="150px"></asp:Label>
             <asp:TextBox ID="txtCustomerID" runat="server" ClientIDMode="AutoID" Width="200px"></asp:TextBox>
+            &nbsp;&nbsp;&nbsp;
             &nbsp;<asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" Text="Find" />
             <br />
             <asp:Label ID="lblCustomerName" runat="server" Text="Customer Name" width="150px"></asp:Label>
@@ -33,7 +34,7 @@
             <br />
             <asp:Button ID="btnOK" runat="server" Text="OK" OnClick="btnOK_Click" />
             &nbsp;
-            <asp:Button ID="btnCancel" runat="server" Text="Cancel" />
+            <asp:Button ID="btnCancel" runat="server" Text="Cancel" OnClick="btnCancel_Click" />
             <br />
             &nbsp;&nbsp;
             <br />

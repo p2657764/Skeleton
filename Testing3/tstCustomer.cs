@@ -223,18 +223,18 @@ namespace TestingCustomer_Framework
             //variable to store outcome
             Boolean OK = true;
             //apply a name that doesn't exist
-            FilteredNames.ReportByCustomerName("yyyyyy yyyyyy");
+            FilteredNames.ReportByCustomerName("Joe Bloggs");
             //check that correct number of records are found
             if (FilteredNames.Count == 2)
             {
                 //check that first record is ID 28
-                if (FilteredNames.CustomerList[0].CustomerID != 28)
+                if (FilteredNames.CustomerList[0].CustomerID != 38)
                 {
                     OK = false;
                 }
 
                 //check that first record is ID 29
-                if (FilteredNames.CustomerList[1].CustomerID != 29)
+                if (FilteredNames.CustomerList[1].CustomerID != 39)
                 {
                     OK = false;
                 }
@@ -358,7 +358,7 @@ namespace TestingCustomer_Framework
                 //create an instance of the class we want to create 
                 clsCustomer ACustomer = new clsCustomer();
                 Boolean Found = false;
-                Int32 CustomerID = 14;
+                Int32 CustomerID = 27;
                 Found = ACustomer.Find(CustomerID);
                 Assert.IsTrue(Found);
             }
