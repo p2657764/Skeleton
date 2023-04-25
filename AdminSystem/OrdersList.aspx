@@ -6,7 +6,7 @@
 <head runat="server">
     <title></title>
 </head>
-<body style="height: 710px; width: 424px">
+<body style="height: 710px; width: 1124px">
     <form id="form1" runat="server">
         <div style="height: 1080px; width: 1920px; background-color: #FFFFFF;">
             <asp:ListBox ID="lstOrderList" runat="server" Height="216px" OnSelectedIndexChanged="lstOrderList_SelectedIndexChanged" Width="362px" style="font-size: large"></asp:ListBox>
@@ -21,7 +21,7 @@
             <br />
             <br />
             <asp:Label ID="lblEnterAOrderPlacedDate" runat="server" Text="Enter a Order Placed Date" style="font-size: large"></asp:Label>
-            &nbsp;<asp:TextBox ID="txtEnterAnOrderPlacedDate" runat="server" OnTextChanged="txtEnterAName_TextChanged" style="font-size: medium; margin-bottom: 0px;"></asp:TextBox>
+            &nbsp;<asp:TextBox ID="txtEnterAnOrderPlacedDate" runat="server" OnTextChanged="txtEnterAName_TextChanged" style="font-size: medium; margin-bottom: 0px; margin-top: 1px;" Height="16px"></asp:TextBox>
             <br />
             <br />
             <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" style="font-size: medium" />
