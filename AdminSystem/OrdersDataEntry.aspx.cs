@@ -21,18 +21,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //variable to store the result of the find operation
         Boolean Found = false;
         //get the primary key entered by the user
-        OrderID = Convert.ToInt32(txtOrderID);
+        OrderID = Convert.ToInt32(txtOrderID.Text);
         //find the record 
         Found = AnOrder.Find(OrderID);
         //if found
         if (Found == true)
         {
             //display the values of the properties in the form
-            txtOrderPlacedDate.Text = AnOrder.OrderPlacedDate.ToString();
+            txtOrderPlacedDate.Text = AnOrder.OrderPlacedDate.ToString().Substring(0,10);
             chkOrderVerification.Checked = AnOrder.OrderVerification;
             txtProductQuantity.Text = AnOrder.ProductQuantity.ToString();
             txtUnitPrice.Text = AnOrder.UnitPrice.ToString();
-            txtShippingDate.Text = AnOrder.ShippingDate.ToString(); 
+            txtShippingDate.Text = AnOrder.ShippingDate.ToString().Substring(0, 10); 
         }
     }
 
