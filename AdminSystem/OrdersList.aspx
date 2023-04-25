@@ -6,13 +6,32 @@
 <head runat="server">
     <title></title>
 </head>
-<body>
+<body style="height: 710px; width: 424px">
     <form id="form1" runat="server">
-        <asp:ListBox ID="lstOrderList" runat="server" style="z-index: 1; left: 10px; top: 15px; position: absolute; height: 459px; width: 527px"></asp:ListBox>
-        <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click1" style="z-index: 1; left: 30px; top: 485px; position: absolute" Text="Add" />
-        <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" style="z-index: 1; left: 84px; top: 485px; position: absolute" Text="Edit" />
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 46px; top: 530px; position: absolute"></asp:Label>
-        <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="z-index: 1; left: 142px; top: 485px; position: absolute" Text="Delete" />
+        <div style="height: 1080px; width: 1920px; background-color: #FFFFFF;">
+            <asp:ListBox ID="lstOrderList" runat="server" Height="216px" OnSelectedIndexChanged="lstOrderList_SelectedIndexChanged" Width="362px" style="font-size: large"></asp:ListBox>
+            <br />
+            <br />
+            <asp:Button ID="btnAdd" runat="server" OnClick="btnAdd_Click" Text="Add" style="font-size: medium" />
+            &nbsp;
+            <asp:Button ID="btnEdit" runat="server" OnClick="btnEdit_Click" Text="Edit" style="font-size: medium" />
+            &nbsp;
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" Text="Delete" style="font-size: medium" />
+            <br />
+            <br />
+            <br />
+            <asp:Label ID="lblEnterAOrderPlacedDate" runat="server" Text="Enter a Order Placed Date" style="font-size: large"></asp:Label>
+            &nbsp;<asp:TextBox ID="txtEnterAnOrderPlacedDate" runat="server" OnTextChanged="txtEnterAName_TextChanged" style="font-size: medium; margin-bottom: 0px;"></asp:TextBox>
+            <br />
+            <br />
+            <asp:Button ID="btnApply" runat="server" OnClick="btnApply_Click" Text="Apply" style="font-size: medium" />
+&nbsp;
+            <asp:Button ID="btnClear" runat="server" OnClick="btnClear_Click" Text="Clear" style="font-size: medium" />
+            <br />
+            <br />
+            <br />
+            <asp:Label ID="lblError" runat="server" Text="[lblError]" style="font-size: large"></asp:Label>
+        </div>
     </form>
 </body>
 </html>
