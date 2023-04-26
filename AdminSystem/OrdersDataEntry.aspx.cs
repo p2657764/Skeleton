@@ -33,25 +33,36 @@ public partial class _1_DataEntry : System.Web.UI.Page
     
     protected void btnFind_Click(object sender, EventArgs e) //find button
     {
-        //create an instance of the address class
-        clsOrder AnOrder = new clsOrder();
-        //variable o store the primary key
-        Int32 OrderID;
-        //variable to store the result of the find operation
-        Boolean Found = false;
-        //get the primary key entered by the user
-        OrderID = Convert.ToInt32(txtOrderID.Text);
-        //find the record 
-        Found = AnOrder.Find(OrderID);
-        //if found
-        if (Found == true)
+        bool emptychecker = string.IsNullOrEmpty(txtOrderID.Text);
+        int number;
+        bool numericchecker = int.TryParse(txtOrderID.Text, out number);
+        if (emptychecker == false && numericchecker == true)
         {
-            //display the values of the properties in the form
-            txtOrderPlacedDate.Text = AnOrder.OrderPlacedDate.ToString().Substring(0,10);
-            chkOrderVerification.Checked = AnOrder.OrderVerification;
-            txtProductQuantity.Text = AnOrder.ProductQuantity.ToString();
-            txtUnitPrice.Text = AnOrder.UnitPrice.ToString();
-            txtShippingDate.Text = AnOrder.ShippingDate.ToString().Substring(0, 10); 
+            //create an instance of the address class
+            clsOrder AnOrder = new clsOrder();
+            //variable o store the primary key
+            Int32 OrderID;
+            //variable to store the result of the find operation
+            Boolean Found = false;
+            //get the primary key entered by the user
+            OrderID = Convert.ToInt32(txtOrderID.Text);
+            //find the record 
+            Found = AnOrder.Find(OrderID);
+            //if found
+            if (Found == true)
+            {
+                //display the values of the properties in the form
+                txtOrderPlacedDate.Text = AnOrder.OrderPlacedDate.ToString().Substring(0, 10);
+                chkOrderVerification.Checked = AnOrder.OrderVerification;
+                txtProductQuantity.Text = AnOrder.ProductQuantity.ToString();
+                txtUnitPrice.Text = AnOrder.UnitPrice.ToString();
+                txtShippingDate.Text = AnOrder.ShippingDate.ToString().Substring(0, 10);
+            }
+            lblError.Text = "";
+        }
+        else
+        {
+            lblError.Text = "Enter a valid OrderID";
         }
     }
 
@@ -141,5 +152,18 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void chkOrderVerification_CheckedChanged(object sender, EventArgs e)
     {
 
+    }
+
+    protected void btnCancel_Click(object sender, EventArgs e)
+    {
+        //create an instance of the address class
+        clsOrder AnOrder = new clsOrder();
+        //clear the boxes
+        txtOrderID.Text = "";
+        txtOrderPlacedDate.Text = "";
+        chkOrderVerification.Checked = false;
+        txtProductQuantity.Text = "";
+        txtUnitPrice.Text = "";
+        txtShippingDate.Text = "";
     }
 }

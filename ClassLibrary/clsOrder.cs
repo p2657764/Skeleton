@@ -49,7 +49,7 @@ namespace ClassLibrary
             }
             set
             {
-                mOrderPlacedDate = value;
+                mOrderPlacedDate = value.Date;
             }
         }
 
@@ -88,7 +88,7 @@ namespace ClassLibrary
             }
             set
             {
-                mUnitPrice = value;
+                mUnitPrice = Math.Round(value,2);
             }
         }
 
@@ -101,7 +101,7 @@ namespace ClassLibrary
             }
             set
             {
-                mShippingDate = value;
+                mShippingDate = value.Date;
             }
         }
         
@@ -115,7 +115,7 @@ namespace ClassLibrary
             //copy the dateadde value to the datetemp variable
             try
             {
-                DateTemp = Convert.ToDateTime(orderPlacedDate);
+                DateTemp = Convert.ToDateTime(orderPlacedDate).Date;
                 if (DateTemp < DateTime.Now.Date)
                 {
                     //record the error
@@ -148,7 +148,7 @@ namespace ClassLibrary
             try
             {
                 //copy the dateAdded value to the DateTemp variable
-                DateTemp = Convert.ToDateTime(ShippingDate);
+                DateTemp = Convert.ToDateTime(ShippingDate).Date;
                 if (DateTemp < DateTime.Now.Date)
                 {
                     //record the error
@@ -183,11 +183,11 @@ namespace ClassLibrary
             {
                 //copy the data from the database to the private data members
                 mOrderID = Convert.ToInt32(DB.DataTable.Rows[0]["OrderID"]);
-                mOrderPlacedDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderPlacedDate"]);
+                mOrderPlacedDate = Convert.ToDateTime(DB.DataTable.Rows[0]["OrderPlacedDate"]).Date;
                 mOrderVerification = Convert.ToBoolean(DB.DataTable.Rows[0]["OrderVerification"]);
                 mProductQuantity = Convert.ToInt32(DB.DataTable.Rows[0]["ProductQuantity"]);
                 mUnitPrice = Convert.ToDecimal(DB.DataTable.Rows[0]["UnitPrice"]);
-                mShippingDate = Convert.ToDateTime(DB.DataTable.Rows[0]["ShippingDate"]);
+                mShippingDate = Convert.ToDateTime(DB.DataTable.Rows[0]["ShippingDate"]).Date;
 
                 //return that everything worked ok
                 return true;
