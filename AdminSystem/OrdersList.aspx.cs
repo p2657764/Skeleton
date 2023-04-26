@@ -72,6 +72,8 @@ public partial class _1_List : System.Web.UI.Page
             Session["OrderID"] = OrderID;
             //redirect to the delete page
             Response.Redirect("OrderConfirmDelete");
+            //update list box
+            DisplayOrders();
         }
         else //if no record has been seleceted
         {
@@ -108,6 +110,7 @@ public partial class _1_List : System.Web.UI.Page
     {
         //create an instance of the order collection
         clsOrderCollection Order = new clsOrderCollection();
+        Order.ReportByOrderPlacedDate(txtEnterAnOrderPlacedDate.Text);
         Order.ReportByOrderPlacedDate("");
         //clear any existing filter to tidy up the interface
         txtEnterAnOrderPlacedDate.Text = "";

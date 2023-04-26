@@ -8,11 +8,30 @@ using ClassLibrary;
 
 public partial class _1_DataEntry : System.Web.UI.Page
 {
+    //variable to store primary key with page level scope
+    Int32 OrderID;
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (Session["OrderID"] != null)
+        {
+            int OrderID = Convert.ToInt32(Session["OrderID"].ToString());
+            //create instance of order class
+            clsOrder AnOrder = new clsOrder();
+            bool Found = AnOrder.Find(OrderID);
+            //if found
+            if (Found == true)
+            {
+                //display the values of the properties in the form
+                txtOrderPlacedDate.Text = AnOrder.OrderPlacedDate.ToString().Substring(0, 10);
+                chkOrderVerification.Checked = AnOrder.OrderVerification;
+                txtProductQuantity.Text = AnOrder.ProductQuantity.ToString();
+                txtUnitPrice.Text = AnOrder.UnitPrice.ToString();
+                txtShippingDate.Text = AnOrder.ShippingDate.ToString().Substring(0, 10);
+            }
+        }
     }
     
-    protected void Button1_Click(object sender, EventArgs e) //find button
+    protected void btnFind_Click(object sender, EventArgs e) //find button
     {
         //create an instance of the address class
         clsOrder AnOrder = new clsOrder();
@@ -36,7 +55,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
         }
     }
 
-    protected void btnOK_Click_Click(object sender, EventArgs e)//OK BUTTON
+    protected void btnOK_Click(object sender, EventArgs e)//OK BUTTON
     {
         //create new instance of clsORder
         clsOrder AnOrder = new clsOrder();
@@ -55,46 +74,54 @@ public partial class _1_DataEntry : System.Web.UI.Page
         if (Error == "")
         {
             //capture the orderid
-            AnOrder.OrderID = Convert.ToInt32(txtOrderID);
+            AnOrder.OrderID = OrderID;
             //capture order placed date
-            AnOrder.OrderPlacedDate = Convert.ToDateTime(txtOrderPlacedDate.Text);
+            AnOrder.OrderPlacedDate = Convert.ToDateTime(OrderPlacedDate.Substring(0, 10));
             //capture product quantity
-            AnOrder.ProductQuantity = Convert.ToInt32(txtProductQuantity.Text);
+            AnOrder.ProductQuantity = Convert.ToInt32(ProductQuantity);
             //capture unit price
-            AnOrder.UnitPrice = Convert.ToDecimal(txtUnitPrice.Text);
+            AnOrder.UnitPrice = Convert.ToDecimal(UnitPrice);
             //capture shipping date
-            AnOrder.ShippingDate = Convert.ToDateTime(txtShippingDate.Text);
+            AnOrder.ShippingDate = Convert.ToDateTime(ShippingDate);
             //capture active
             AnOrder.Active = chkOrderVerification.Checked;
-            //store customer in session object
-            Session["AnOrder"] = AnOrder;
             //create a new instance of the order collection
             clsOrderCollection OrderList = new clsOrderCollection();
-            //if this is a new record i.e. OrderID = -1 then add the data
-            if (Convert.ToInt32(txtOrderID) == -1)
-            {
-                //set the ThisOrder property
-                OrderList.ThisOrder = AnOrder;
-                //add the new record
-                OrderList.Add();
-            }
-            //otherwise it must be an update
-            else
-            {
-                //find the recotd to update
-                OrderList.ThisOrder.Find(Convert.ToInt32(txtOrderID));
-                //set the thisorder property
-                OrderList.ThisOrder = AnOrder;
-                //update the record
-                OrderList.Update();
-            }
-            //redirect back to the listpage
+            //set thisorder property
+            OrderList.ThisOrder = AnOrder;
+            //add new record
+            OrderList.Add();
+            //redirect to list page
             Response.Redirect("OrderList.aspx");
+            //update list box
+            DisplayOrder();
         }
+
+        //if this is a new record i.e. OrderID = -1 then add the data
+        // if (Convert.ToInt32(txtOrderID) == -1)
+        //  {
+        //set the ThisOrder property
+        //      OrderList.ThisOrder = AnOrder;
+        //add the new record
+        //      OrderList.Add();
+        //   }
+        //otherwise it must be an update
+        //   else
+        //  {
+        //find the recotd to update
+        //      OrderList.ThisOrder.Find(Convert.ToInt32(txtOrderID));
+        //set the thisorder property
+        //      OrderList.ThisOrder = AnOrder;
+        //update the record
+        //      OrderList.Update();
+        //   }
+        //redirect back to the listpage
+        //  Response.Redirect("OrderList.aspx");
+        //  }
         else
         {
             //display error message
-            lblError.Text = Error;
+             lblError.Text = Error;
         }
     }
     void DisplayOrder()
@@ -109,5 +136,10 @@ public partial class _1_DataEntry : System.Web.UI.Page
         txtProductQuantity.Text = OrderBook.ThisOrder.ProductQuantity.ToString();
         txtUnitPrice.Text = OrderBook.ThisOrder.UnitPrice.ToString();
         txtShippingDate.Text = OrderBook.ThisOrder.ShippingDate.ToString();
+    }
+
+    protected void chkOrderVerification_CheckedChanged(object sender, EventArgs e)
+    {
+
     }
 }
