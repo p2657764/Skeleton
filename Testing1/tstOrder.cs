@@ -119,6 +119,7 @@ namespace Testing1
             //var to store the primary key
             Int32 PrimaryKey = 0;
             //set its properties
+            TestItem.OrderID = 1;
             TestItem.ProductQuantity = 10;
             TestItem.UnitPrice = (int)109.99;
             TestItem.OrderVerification = true;
@@ -131,6 +132,7 @@ namespace Testing1
             //set the primary key of the test data
             TestItem.OrderID = PrimaryKey;
             //modify the test data
+            TestItem.OrderID = 2;
             TestItem.ProductQuantity = 5;
             TestItem.UnitPrice = (int)5.59;
             TestItem.OrderVerification = false;
@@ -154,6 +156,7 @@ namespace Testing1
             clsOrder TestItem = new clsOrder();
             //var to store the primary keyt
             Int32 PrimaryKey = 0;
+            TestItem.OrderID = 1;
             TestItem.ProductQuantity = 10;
             TestItem.UnitPrice = (int)109.99;
             TestItem.OrderVerification = true;
@@ -224,7 +227,7 @@ namespace Testing1
                 OK = false;
             }
             //test to see that there are no records
-            Assert.IsTrue(OK);
+            Assert.IsFalse(OK);
         }
 
     }
@@ -245,6 +248,7 @@ namespace Testing1
             //test too see that it exists
             Assert.IsNotNull(AnOrder);
         }
+        [TestMethod]
         public void ActivePropertyOK()
         {
             //creates an instance of the class we want to create

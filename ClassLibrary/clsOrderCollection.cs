@@ -35,6 +35,7 @@ namespace ClassLibrary
                 //set private data
             }
         }
+        //public property for ThisOrder
         public clsOrder ThisOrder
         {
             get
@@ -78,6 +79,7 @@ namespace ClassLibrary
             //connect to the database
             clsDataConnection DB = new clsDataConnection();
             //set the parameters for the stored procedure
+            DB.AddParameter("@OrderID", mThisOrder.OrderID);
             DB.AddParameter("@OrderPlacedDate", mThisOrder.OrderPlacedDate);
             DB.AddParameter("@OrderVerification", mThisOrder.OrderVerification);
             DB.AddParameter("@ProductQuantity", mThisOrder.ProductQuantity);

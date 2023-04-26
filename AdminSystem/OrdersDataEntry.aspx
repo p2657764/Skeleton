@@ -14,7 +14,7 @@
 <body>
     <form id="form1" runat="server">
         <asp:Label ID="lblOrderNo" runat="server" style="z-index: 2; left: 10px; top: 15px; position: absolute; bottom: 640px; width: 62px;" Text="OrderID"></asp:Label>
-        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 27px; top: 299px; position: absolute; " width="53px"> </asp:Label>
+        <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 27px; top: 299px; position: absolute; height: 172px; width: 267px;"> </asp:Label>
         <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 92px; top: 249px; position: absolute; " Text="Cancel" height="26px" />
         <asp:Label ID="lblOrderPlacedDate" runat="server" style="z-index: 2; left: 10px; top: 47px; position: absolute" Text="OrderPlacedDate" width="62px" height="22px"></asp:Label>
         <asp:TextBox ID="txtOrderPlacedDate" runat="server" style="z-index: 1; left: 172px; top: 42px; position: absolute; margin-top: 0px; width: 145px;" height="22px"></asp:TextBox>
@@ -24,9 +24,8 @@
         <br />
         <br />
         <br />
-        <asp:Button ID="btnOK" runat="server" style="z-index: 1; left: 16px; top: 249px; position: absolute" Text="OK" OnClick="btnOK_Click_Click" />
         <br />
-        <asp:Button ID="FindButton" runat="server" OnClick="Button1_Click" style="z-index: 1; left: 337px; top: 11px; position: absolute" Text="Find" />
+        <asp:Button ID="btnFind" runat="server" OnClick="btnFind_Click" style="z-index: 1; left: 337px; top: 11px; position: absolute" Text="Find" />
         <br />
         <asp:Label ID="lblProductQuantity" runat="server" style="z-index: 2; left: 10px; top: 70px; position: absolute; width: 62px; margin-top: 11px; margin-bottom: 0px" Text="ProductQuantity" height="22px"></asp:Label>
         <asp:Label ID="lblUnitPrice" runat="server" style="z-index: 2; left: 10px; top: 118px; position: absolute" Text="UnitPrice" height="22px" width="62px"></asp:Label>
@@ -35,6 +34,7 @@
         <asp:TextBox ID="txtUnitPrice" runat="server" style="z-index: 1; left: 172px; top: 116px; position: absolute; width: 145px" height="22px"></asp:TextBox>
         <asp:TextBox ID="txtShippingDate" runat="server" style="z-index: 1; left: 172px; top: 152px; position: absolute; width: 145px; margin-top: 6px;" height="22px"></asp:TextBox>
         <asp:TextBox ID="txtOrderID" runat="server" style="z-index: 1; left: 172px; top: 13px; position: absolute; width: 145px"></asp:TextBox>
+        <asp:Button ID="btnOK" runat="server" style="z-index: 1; left: 45px; top: 249px; position: absolute; height: 27px;" Text="OK" OnClick="btnOK_Click" />
     </form>
 </body>
 </html>
