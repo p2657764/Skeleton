@@ -105,7 +105,7 @@ namespace ClassLibrary
             //connect tot database
             clsDataConnection DB = new clsDataConnection();
             //send the orderplaceddate paramaeter to the database
-            DB.AddParameter("@OrderPlacedDate", OrderPlacedDate);
+            DB.AddParameter("@OrderPlacedDateFormatted", OrderPlacedDate);
             //execute the stored procedure
             DB.Execute("sproc_tblOrder_FilterByOrderPlacedDate");
             //populate the array list with the data table
