@@ -129,11 +129,11 @@ namespace ClassLibrary
                 clsOrder AnOrder = new clsOrder();
                 //read fields from current record
                 AnOrder.OrderID = Convert.ToInt32(DB.DataTable.Rows[Index]["OrderID"]);
-                AnOrder.OrderPlacedDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderPlacedDate"]);
+                AnOrder.OrderPlacedDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["OrderPlacedDate"].ToString().Substring(0,10)).Date;
                 AnOrder.OrderVerification = Convert.ToBoolean(DB.DataTable.Rows[Index]["OrderVerification"]);
                 AnOrder.ProductQuantity = Convert.ToInt32(DB.DataTable.Rows[Index]["ProductQuantity"]);
                 AnOrder.UnitPrice = Convert.ToDecimal(DB.DataTable.Rows[Index]["UnitPrice"]);
-                AnOrder.ShippingDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["ShippingDate"]);
+                AnOrder.ShippingDate = Convert.ToDateTime(DB.DataTable.Rows[Index]["ShippingDate"].ToString().Substring(0, 10)).Date;
                 //add record to private data memeber
                 mOrderList.Add(AnOrder);
                 //points to next record
