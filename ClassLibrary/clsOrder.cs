@@ -52,6 +52,10 @@ namespace ClassLibrary
                 mOrderPlacedDate = value.Date;
             }
         }
+        public string OrderPlacedDateFormatted
+        {
+            get { return OrderPlacedDate.ToString("dd/MM/yyyy"); }
+        }
 
         private bool mOrderVerification;
         public bool OrderVerification
