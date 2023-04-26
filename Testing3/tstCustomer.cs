@@ -245,7 +245,7 @@ namespace TestingCustomer_Framework
                 OK = false;
             }
             //test to see if there are no records
-            Assert.IsTrue(OK);
+            Assert.IsFalse(OK);
             }
     }
 

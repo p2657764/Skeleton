@@ -12,7 +12,25 @@ public partial class _1_DataEntry : System.Web.UI.Page
     Int32 CustomerID;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        if (Session["CustomerID"] != null)
+        {
+            int CustomerID = Convert.ToInt32(Session["CustomerID"].ToString());
+            //create instance of customer class
+            clsCustomer ACustomer = new clsCustomer();
+            bool Found = ACustomer.Find(CustomerID);
+            //if found
+            if (Found == true)
+            {
+                //display value of properties in form
+                txtCustomerID.Text = ACustomer.CustomerID.ToString();
+                txtCustomerName.Text = ACustomer.CustomerName;
+                txtAddressLine1.Text = ACustomer.AddressLine1;
+                txtPostCode.Text = ACustomer.PostCode;
+                txtEmailAddress.Text = ACustomer.EmailAddress;
+                chkEmailVerification.Checked = ACustomer.EmailVerification;
+                txtAccountCreationDate.Text = ACustomer.AccountCreationDate.ToString();
+            }
+        }
     }
 
     protected void btnOK_Click(object sender, EventArgs e)
