@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ClassLibrary;
 
 namespace ClassLibrary
 {
@@ -193,9 +194,9 @@ namespace ClassLibrary
             mDepartment = "Managment";
             mActive = true;
             mName = "Alfie Nickson";
-            mStaffNo = 21;
+            mStaffNo = "21";
             mStartDate = Convert.ToDateTime("11/01/2001");
-            mStaffWage = 200;
+            mStaffWage = "200";
             mUpdateCatalogue = true;
             mRole = "P and C";
 
