@@ -1,9 +1,88 @@
 ﻿using ClassLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.Collections.Generic;
 
 namespace Testing2
 {
+    [TestClass]
+    public class tstStaffCollection
+    {
+        [TestMethod]
+        public void InstanceOK()
+        {
+            clsStaffCollection staff = new clsStaffCollection();
+
+            Assert.IsNotNull(staff);
+        }
+        [TestMethod]
+        public void StaffListOK()
+        {
+            clsStaffCollection staff = new clsStaffCollection();
+            List<ClsStaff> TestList = new List<ClsStaff>();
+            ClsStaff TestItem = new ClsStaff();
+            //set properties
+            TestItem.Active = true;
+            TestItem.StaffNo = "21";
+            TestItem.StaffWage = "200";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.Department = "some dept";
+            TestItem.Name = "Namey names";
+            TestItem.Role = "jobby";
+            TestItem.UpdateCatalogue = true;
+            //add to test list
+            TestList.Add(TestItem);
+            //assign the data to the property
+            staff.StaffList = TestList;
+            //test to see that theyre the same
+            Assert.AreEqual(staff.StaffList, TestList);
+        }
+        [TestMethod]
+        public void CountPropertyOK()
+        {
+            clsStaffCollection staff = new clsStaffCollection();
+            Int32 SomeCount = 0;
+            staff.Count = SomeCount;
+            Assert.AreEqual(staff.Count, SomeCount);
+        }
+        [TestMethod]
+        public void ThisAddressPropertyOK()
+        {
+            clsStaffCollection staff = new clsStaffCollection();
+            ClsStaff TestStaff = new ClsStaff();
+            TestStaff.Active = true;
+            TestStaff.StaffNo = "21";
+            TestStaff.StaffWage = "200";
+            TestStaff.StartDate = DateTime.Now.Date;
+            TestStaff.Department = "some dept";
+            TestStaff.Name = "Namey names";
+            TestStaff.Role = "jobby";
+            TestStaff.UpdateCatalogue = true;
+
+            staff.ThisStaff = TestStaff;
+            Assert.AreEqual(staff.ThisStaff, TestStaff);
+        }
+        [TestMethod]
+        public void ListAndCountOK()
+        {
+            clsStaffCollection staff = new clsStaffCollection();
+            List<ClsStaff> TestList = new List<ClsStaff>();
+            ClsStaff TestItem = new ClsStaff();
+            TestItem.Active = true;
+            TestItem.StaffNo = "21";
+            TestItem.StaffWage = "200";
+            TestItem.StartDate = DateTime.Now.Date;
+            TestItem.Department = "some dept";
+            TestItem.Name = "Namey names";
+            TestItem.Role = "jobby";
+            TestItem.UpdateCatalogue = true;
+            //add to list
+            TestList(TestItem);
+            //assign to property
+            staff.StaffList = TestList;
+            Assert.AreEqual(staff.Count, TestList.Count);
+        }
+    }
     [TestClass]
     public class tstStaff
     {
@@ -424,7 +503,7 @@ namespace Testing2
         {
             ClsStaff staff = new ClsStaff();
 
-            int TestData = 100;
+            String TestData = "100";
 
             staff.StaffWage = TestData;
 
@@ -501,7 +580,7 @@ namespace Testing2
 
             Found = staff.Find(StaffNo);
 
-            if (staff.StaffWage != 200)
+            if (staff.StaffWage != "200")
             {
                 OK = false;
             }
@@ -612,21 +691,12 @@ namespace Testing2
             Boolean OK = true;
             Int32 StaffNo = 21;
             Found = staff.Find(StaffNo);
-            if (staff.StaffNo != 21)
+            if (staff.StaffNo != "21")
             {
                 OK = false;
             }
             Assert.IsTrue(OK);
         }
-        
-
-            
-
-
-            
-
-
-        
     }
 }
 
