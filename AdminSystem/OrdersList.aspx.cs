@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -23,7 +24,6 @@ public partial class _1_List : System.Web.UI.Page
                 DisplayOrders();
             }
         }
-        
     }
 
     void DisplayOrders()
@@ -38,6 +38,7 @@ public partial class _1_List : System.Web.UI.Page
         lstOrderList.DataTextField = "OrderPlacedDateFormatted";
         //bind the data to the list
         lstOrderList.DataBind();
+        lblError.Text = "";
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)
@@ -47,6 +48,7 @@ public partial class _1_List : System.Web.UI.Page
         //if a record has been selected from the list
         if (lstOrderList.SelectedIndex != -1)
         {
+            clsOrder AnOrder = new clsOrder();
             //get the primary key of the record to edit
             OrderID = Convert.ToInt32(lstOrderList.SelectedValue);
             //store the data in the session object
@@ -72,9 +74,7 @@ public partial class _1_List : System.Web.UI.Page
             //store the data in the session object
             Session["OrderID"] = OrderID;
             //redirect to the delete page
-            Response.Redirect("OrderConfirmDelete");
-            //update list box
-            DisplayOrders();
+            Response.Redirect("OrdersConfirmDelete.aspx");
         }
         else //if no record has been seleceted
         {
@@ -97,31 +97,32 @@ public partial class _1_List : System.Web.UI.Page
     {
         //create instance of the class we want to create
         clsOrderCollection Orders = new clsOrderCollection();
-        Orders.ReportByOrderPlacedDate(txtEnterAnOrderPlacedDate.Text);
-        lstOrderList.DataSource = Orders.OrderList;
-        //set the name of the primary key
-        lstOrderList.DataValueField = "OrderID";
-        //set name of field to display
-        lstOrderList.DataTextField = "OrderPlacedDate";
-        //bind data to list
-        lstOrderList.DataBind();
+        try
+        {
+            //try format the data eneterd into the correct format
+            DateTime TempDate = DateTime.ParseExact(txtEnterAnOrderPlacedDate.Text, "dd/MM/yyyy", CultureInfo.InvariantCulture);
+            //store the new formatted data into  a string to pass it to reportbyorderplaceddate
+            string orderPlacedDateFormatted = TempDate.ToString("yyyy/MM/dd");
+            Orders.ReportByOrderPlacedDate(orderPlacedDateFormatted);
+            lstOrderList.DataSource = Orders.OrderList;
+            //set the name of the primary key
+            lstOrderList.DataValueField = "OrderID";
+            //set name of field to display
+            lstOrderList.DataTextField = "OrderPlacedDateFormatted";
+            //bind data to list
+            lstOrderList.DataBind();
+            lblError.Text = "";
+        }
+        catch (FormatException exception)
+        {
+            lblError.Text = "Please enter a valid date in the format dd/mm/yyyy";
+        }
     }
 
     protected void btnClear_Click(object sender, EventArgs e)
     {
-        //create an instance of the order collection
-        clsOrderCollection Order = new clsOrderCollection();
-        Order.ReportByOrderPlacedDate(txtEnterAnOrderPlacedDate.Text);
-        Order.ReportByOrderPlacedDate("");
-        //clear any existing filter to tidy up the interface
+        DisplayOrders();
         txtEnterAnOrderPlacedDate.Text = "";
-        lstOrderList.DataSource = Order.OrderList;
-        //set the name of the primary key
-        lstOrderList.DataValueField = "OrderID";
-        //set the name of the fields to display
-        lstOrderList.DataTextField = "OrderPlacedDate";
-        //bidn the data to the list
-        lstOrderList.DataBind();
     }
 
 
