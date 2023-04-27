@@ -31,14 +31,44 @@ public partial class _1_DataEntry : System.Web.UI.Page
     protected void btnOK_Click(object sender, EventArgs e)
     {
 
-        //create a new instance of ClsStaff
+        //create a new instance of clsStaff
         ClsStaff staff = new ClsStaff();
-        //capture the name
-        staff.Name = txtName.Text;
-        //store the name in session object
-        Session["Staff"] = staff;
-        //navigate to the viewer page
-        Response.Redirect("StaffViewer.aspx");
+        //capture things lad
+        String Name = txtName.Text;
+        String staffRole = txtRole.Text;
+        String StaffWage = txtStaffWage.Text;
+        String staffDepartment = txtDepartment.Text;
+        String startDate = txtStartDate.Text;
+        String Error = "";
+        String StaffNo = txtStaffId.Text;
+
+        Error = staff.Valid(StaffNo, StaffWage, staffRole, staffDepartment, startDate);
+        if (Error == "")
+        {
+            //capture staff no
+            //staff.StaffNo = StaffNo;
+            //capture name
+            staff.Name = Name;
+            //capture wage
+            //staff.StaffWage = StaffWage;
+            //capture department
+            staff.Department = staffDepartment;
+            //capture start date
+            staff.StartDate = Convert.ToDateTime(startDate);
+            //capture update catalogue
+            staff.UpdateCatalogue = chkUpdateCatalogue.Checked;
+            //capture role
+            staff.Role = staffRole;
+            //store address in sess
+            Session["StaffNo"] = staff;
+            //redirect
+            Response.Write("StaffViewer.aspx");
+        }
+        else
+        {
+            //display error message
+            lblError.Text = Error;
+        }
     }
 
 
@@ -52,13 +82,13 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //create an instance of the staff class
         ClsStaff staff = new ClsStaff();
         //variable to store the primary key
-        Int32 StaffId;
+        Int32 StaffNo;
         //variable to store the result of the find operation
         Boolean Found = false;
         //get the primary key entered by the user
-        StaffId = Convert.ToInt32(txtStaffId.Text);
+        StaffNo = Convert.ToInt32(txtStaffId.Text);
         //find the record
-        Found = staff.Find(StaffId);
+        Found = staff.Find(StaffNo);
         //if found
         if (Found == true)
         {
