@@ -20,8 +20,8 @@ namespace ClassLibrary
             }
         }
 
-        private int mStaffNo;
-        public int StaffNo
+        private string mStaffNo;
+        public string StaffNo
         {
             get
             {
@@ -115,9 +115,9 @@ namespace ClassLibrary
         }
 
 
-        private int mStaffWage;
+        private string mStaffWage;
 
-        public int StaffWage
+        public string StaffWage
         {
             get
             {
