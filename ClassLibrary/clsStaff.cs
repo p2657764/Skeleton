@@ -191,7 +191,7 @@ namespace ClassLibrary
 
         public bool Find(int staffId)
         {
-            mDepartment = "Managment";
+            /*mDepartment = "Managment";
             mActive = true;
             mName = "Alfie Nickson";
             mStaffNo = "21";
@@ -200,12 +200,12 @@ namespace ClassLibrary
             mUpdateCatalogue = true;
             mRole = "P and C";
 
-            return true;
+            return true;*/
 
-            /*//create an instance of the data connection
+            //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter for the address no to search for
-            DB.AddParameter("@StaffId", StaffId);
+            DB.AddParameter("@StaffId", StaffNo);
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_FilterByAddressNo");
             //if one record is found (there should be either one or zero)
@@ -213,12 +213,12 @@ namespace ClassLibrary
             {
 
 
-                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mStaffNo = Convert.ToString(DB.DataTable.Rows[0]["StaffId"]);
                 mStartDate = Convert.ToDateTime(DB.DataTable.Rows[0]["StartDate"]);
                 mRole = Convert.ToString(DB.DataTable.Rows[0]["Role"]);
                 mDepartment = Convert.ToString(DB.DataTable.Rows[0]["Department"]);
                 mUpdateCatalogue = Convert.ToBoolean(DB.DataTable.Rows[0]["UpdateCatalogue"]);
-                mStaffWage = Convert.ToInt32(DB.DataTable.Rows[0]["Wage"]);
+                mStaffWage = Convert.ToString(DB.DataTable.Rows[0]["Wage"]);
                 mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
                 mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]);
                 //return that everything worked okay
@@ -229,9 +229,9 @@ namespace ClassLibrary
 
             }
             return false;
-            }*/
+            }
         }
 
 
     }
-}
+

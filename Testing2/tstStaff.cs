@@ -41,7 +41,7 @@ namespace Testing2
         public void CountPropertyOK()
         {
             clsStaffCollection staff = new clsStaffCollection();
-            Int32 SomeCount = 0;
+            Int32 SomeCount = 2;
             staff.Count = SomeCount;
             Assert.AreEqual(staff.Count, SomeCount);
         }
@@ -77,11 +77,19 @@ namespace Testing2
             TestItem.Role = "jobby";
             TestItem.UpdateCatalogue = true;
             //add to list
-            TestList(TestItem);
+            TestList.Add(TestItem);
             //assign to property
             staff.StaffList = TestList;
             Assert.AreEqual(staff.Count, TestList.Count);
         }
+        [TestMethod]
+        public void TwoRecordsPresent()
+        {
+            //create an instance of the class
+            clsStaffCollection staff = new clsStaffCollection();
+            Assert.AreEqual(staff.Count, 2);
+        }
+        
     }
     [TestClass]
     public class tstStaff
