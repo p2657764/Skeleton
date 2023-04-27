@@ -12,21 +12,21 @@
         </div>
         <asp:Label ID="lblRole" runat="server" style="z-index: 1; left: 15px; top: 161px; position: absolute; height: 23px;" Text="Staff Role" width="683px"></asp:Label>
         <asp:Label ID="lblStaffId" runat="server" Text="StaffId"></asp:Label>
-        <asp:TextBox ID="txtStaffId" runat="server" style="margin-left: 93px"></asp:TextBox>
+        <asp:TextBox ID="txtStaffId" runat="server" style="margin-left: 93px" Width="213px"></asp:TextBox>
         <p style="height: 19px; width: 683px">
             <asp:TextBox ID="txtStaffWage" runat="server" style="z-index: 1; left: 142px; top: 63px; position: absolute; width: 219px"></asp:TextBox>
             Staff Wage</p>
         <asp:Label ID="lblDepartment" runat="server" style="z-index: 1; left: 10px; top: 86px; position: absolute; right: 487px" Text="Staff Department" width="683px"></asp:Label>
-        <asp:TextBox ID="txtDepartment" runat="server" OnTextChanged="txtDepartment_TextChanged" style="z-index: 1; top: 92px; position: absolute; left: 136px; width: 683px; height: 13px"></asp:TextBox>
+        <asp:TextBox ID="txtDepartment" runat="server" OnTextChanged="txtDepartment_TextChanged" style="z-index: 1; top: 92px; position: absolute; left: 136px; width: 222px; height: 13px"></asp:TextBox>
         <p>
             <asp:Label ID="tblName" runat="server" height="19px" style="z-index: 1; left: 10px; top: 110px; position: absolute" Text="Staff Name" width="683px"></asp:Label>
-            <asp:TextBox ID="txtName" runat="server" style="z-index: 1; left: 139px; top: 115px; position: absolute; width: 683px"></asp:TextBox>
+            <asp:TextBox ID="txtName" runat="server" style="z-index: 1; left: 139px; top: 115px; position: absolute; width: 219px"></asp:TextBox>
         </p>
         <p>
             &nbsp;</p>
         <p>
-            <asp:TextBox ID="txtStartDate" runat="server" style="z-index: 1; left: 136px; top: 146px; position: absolute; width: 683px; height: 11px"></asp:TextBox>
-        <asp:TextBox ID="txtRole" runat="server" style="z-index: 1; left: 131px; top: 173px; position: absolute; width: 683px; height: 14px; bottom: 484px;"></asp:TextBox>
+            <asp:TextBox ID="txtStartDate" runat="server" style="z-index: 1; left: 136px; top: 146px; position: absolute; width: 221px; height: 11px"></asp:TextBox>
+        <asp:TextBox ID="txtRole" runat="server" style="z-index: 1; left: 131px; top: 173px; position: absolute; width: 229px; height: 14px; bottom: 484px;"></asp:TextBox>
         </p>
         <asp:CheckBox ID="chkUpdateCatalogue" runat="server" style="z-index: 1; left: 14px; top: 196px; position: absolute; height: 19px; width: 683px" Text="Update Catalogue" TextAlign="Left" />
         <asp:Button ID="btnOK" runat="server" OnClick="btnOK_Click" style="z-index: 1; left: 84px; top: 259px; position: absolute; height: 27px; width: 44px; right: 643px;" Text="OK" />
