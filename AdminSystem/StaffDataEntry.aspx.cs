@@ -56,15 +56,15 @@ public partial class _1_DataEntry : System.Web.UI.Page
         //variable to store the result of the find operation
         Boolean Found = false;
         //get the primary key entered by the user
-        StaffId = Convert.ToInt32(txtStaffId);
+        StaffId = Convert.ToInt32(txtStaffId.Text);
         //find the record
         Found = staff.Find(StaffId);
         //if found
         if (Found == true)
         {
             //display the values of the properties in the form
-            txtStaffId.Text = staff.StaffId;
-            txtStaffWage.Text = staff.StaffWage;
+            txtStaffId.Text = staff.StaffNo.ToString();
+            txtStaffWage.Text = staff.StaffWage.ToString();
             txtDepartment.Text = staff.Department;
             txtName.Text = staff.Name;
             txtStartDate.Text = staff.StartDate.ToString();
@@ -74,6 +74,11 @@ public partial class _1_DataEntry : System.Web.UI.Page
 
 
         }
+
+    }
+
+    protected void txtRole_TextChanged(object sender, EventArgs e)
+    {
 
     }
 }

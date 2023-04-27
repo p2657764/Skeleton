@@ -134,7 +134,7 @@ namespace Testing2
         }
 
         [TestMethod]
-        public void TestNameNotFound()
+        public void TestNameFound()
         {
             ClsStaff staff = new ClsStaff();
 
@@ -156,7 +156,7 @@ namespace Testing2
 
         }
         [TestMethod]
-        public void TestWageNotFound()
+        public void TestWageFound()
         {
             ClsStaff staff = new ClsStaff();
 
@@ -175,7 +175,7 @@ namespace Testing2
             Assert.IsTrue(OK);
         }
         [TestMethod]
-        public void TestDepartmentNotFound()
+        public void TestDepartmentFound()
         {
             ClsStaff staff = new ClsStaff();
 
@@ -194,7 +194,7 @@ namespace Testing2
             Assert.IsTrue(OK);
         }
         [TestMethod]
-        public void TestRoleNotFound()
+        public void TestRoleFound()
         {
             ClsStaff staff = new ClsStaff();
 
@@ -214,7 +214,7 @@ namespace Testing2
 
         }
         [TestMethod]
-        public void TestStartDateNotFound()
+        public void TestStartDateFound()
         {
             ClsStaff staff = new ClsStaff();
 
