@@ -139,5 +139,7 @@ public partial class _1_DataEntry : System.Web.UI.Page
     {
         //redirect to list page
         Response.Redirect("CustomerList.aspx");
+        //update list box
+        DisplayCustomers();
     }
 }
