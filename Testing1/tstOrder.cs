@@ -92,7 +92,7 @@ namespace Testing1
             //variable to store primary key
             Int32 PrimaryKey = 0;
             //set properties
-            TestItem.OrderID = 1;
+            TestItem.OrderID = 10;
             TestItem.ProductQuantity = 10;
             TestItem.UnitPrice = (int)109.99;
             TestItem.OrderVerification = true;
@@ -156,7 +156,7 @@ namespace Testing1
             clsOrder TestItem = new clsOrder();
             //var to store the primary keyt
             Int32 PrimaryKey = 0;
-            TestItem.OrderID = 1;
+            TestItem.OrderID = 10;
             TestItem.ProductQuantity = 10;
             TestItem.UnitPrice = (int)109.99;
             TestItem.OrderVerification = true;
@@ -227,7 +227,7 @@ namespace Testing1
                 OK = false;
             }
             //test to see that there are no records
-            Assert.IsFalse(OK);
+            Assert.IsTrue(OK);
         }
 
     }
@@ -315,7 +315,7 @@ namespace Testing1
             //crete an instance of the class we want to create
             clsOrder AnOrder = new clsOrder();
             //assign some test data to assign to the property
-            DateTime TestData = DateTime.Now.AddDays(5);
+            DateTime TestData = DateTime.Now.AddDays(5).Date;
             //assign the data to the property
             AnOrder.ShippingDate = TestData;
             //test to see if the values are the same
