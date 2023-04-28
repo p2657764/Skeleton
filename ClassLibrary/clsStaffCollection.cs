@@ -5,7 +5,7 @@ namespace ClassLibrary
 {
     public class clsStaffCollection
     {
-        
+
         //private data member for the list
         List<ClsStaff> mStaffList = new List<ClsStaff>();
 
@@ -46,7 +46,7 @@ namespace ClassLibrary
             //get count of records
             RecordCount = DB.Count;
             //while there are records to process
-            while(Index < RecordCount)
+            while (Index < RecordCount)
             {
                 //create blank staff
                 ClsStaff staff = new ClsStaff();
@@ -62,8 +62,10 @@ namespace ClassLibrary
                 mStaffList.Add(staff);
                 //point at the next record
                 Index++;
-                
+
+            }
+
+
+        }
     }
-
-
 }
