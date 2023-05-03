@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 
 namespace ClassLibrary
 {
@@ -66,7 +65,6 @@ namespace ClassLibrary
             //connecting to the databse
             clsDataConnection DB = new clsDataConnection();
             //set parameters for stored procedure
-            DB.AddParameter("@OrderID", mThisOrder.OrderID);
             DB.AddParameter("@OrderPlacedDate", mThisOrder.OrderPlacedDate);
             DB.AddParameter("@OrderVerification", mThisOrder.OrderVerification);
             DB.AddParameter("@ProductQuantity", mThisOrder.ProductQuantity);
@@ -106,19 +104,8 @@ namespace ClassLibrary
             //filters the records based ona  full or partial orderplaceddate
             //connect tot database
             clsDataConnection DB = new clsDataConnection();
-            //chec if orderplaceddate is a valid date in the format dd/mm/yyyy
-            DateTime TempDate;
-            bool ValidDate = DateTime.TryParseExact(OrderPlacedDate, "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out TempDate);
-            if (ValidDate == true)
-            {
-                //send the formatted orderplaceddate parameter to the database
-                DB.AddParameter("@OrderPlacedDate", TempDate.ToString("dd/MM/yyyy"));
-            }
-            else
-            {
-                //send the orderplaceddate paramaeter to the database
-                DB.AddParameter("@OrderPlacedDate", OrderPlacedDate);
-            }
+            //send the orderplaceddate paramaeter to the database
+            DB.AddParameter("@OrderPlacedDateFormatted", OrderPlacedDate);
             //execute the stored procedure
             DB.Execute("sproc_tblOrder_FilterByOrderPlacedDate");
             //populate the array list with the data table
