@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ClassLibrary;
 
 namespace ClassLibrary
 {
@@ -20,8 +21,8 @@ namespace ClassLibrary
             }
         }
 
-        private int mStaffNo;
-        public int StaffNo
+        private string mStaffNo;
+        public string StaffNo
         {
             get
             {
@@ -47,14 +48,77 @@ namespace ClassLibrary
             }
         }
 
-        public string Valid(string staffNo, string staffWage, string staffRole, string staffDepartment, string startDate, string staffUpdateCatalogue)
+        public string Valid(string staffNo, string staffWage, string staffRole, string staffDepartment, string startDate)
         {
-            return "";
+            //create a string variable to store the error
+            String Error = "";
+            //create a temporary variable to store data values
+            DateTime DateTemp;
+            //if the staff No is blank
+            if (staffNo.Length == 0)
+            {
+                //record the error
+                Error = Error + "The staff no may not be blank : ";
+            }
+            if (staffNo.Length > 6)
+            {
+                //record the error
+                Error = Error = "The staff no must be less than 6 characters : ";
+            }
+            try
+            {
+                //copy the dateAdded value to the date temp variable
+                DateTemp = Convert.ToDateTime(StartDate);
+                if (DateTemp < DateTime.Now.Date)
+                {
+                    //record the error
+                    Error = Error + "The date cannot be in the past : ";
+                }
+                if (DateTemp > DateTime.Now.Date)
+                {
+                    Error = Error + "The date cannot be in the future : ";
+                }
+            }
+            catch
+            {
+                //record the error
+                Error = Error + "The date wasn't a valid date : ";
+            }
+            //is the Department blank
+            if (staffDepartment.Length == 0)
+            {
+                Error = Error + "The department is blank : ";
+            }
+            //if its too long
+            if(staffDepartment.Length > 20)
+            {
+                Error = Error + "The department must be less than 20 characters : ";
+            }
+            if (staffWage.Length == 0)
+            {
+                Error = Error + "The wage may not be blank : ";
+            }
+            if (staffWage.Length > 50)
+            {
+                Error = Error + "The wage must be less than 50 characters : ";
+            }
+            if (staffRole.Length == 0)
+            {
+                Error = Error + "The staff role may not be blank : ";
+            }
+            if (staffRole.Length > 50)
+            {
+                Error = Error + "The staff role must be less than 50 characters : ";
+            }
+
+            //return any error messages
+            return Error;
         }
 
-        private int mStaffWage;
 
-        public int StaffWage
+        private string mStaffWage;
+
+        public string StaffWage
         {
             get
             {
@@ -127,21 +191,21 @@ namespace ClassLibrary
 
         public bool Find(int staffId)
         {
-            mDepartment = "Managment";
+            /*mDepartment = "Managment";
             mActive = true;
             mName = "Alfie Nickson";
-            mStaffNo = 21;
+            mStaffNo = "21";
             mStartDate = Convert.ToDateTime("11/01/2001");
-            mStaffWage = 200;
+            mStaffWage = "200";
             mUpdateCatalogue = true;
             mRole = "P and C";
 
-            return true;
+            return true;*/
 
-            /*//create an instance of the data connection
+            //create an instance of the data connection
             clsDataConnection DB = new clsDataConnection();
             //add the parameter for the address no to search for
-            DB.AddParameter("@StaffId", StaffId);
+            DB.AddParameter("@StaffId", StaffNo);
             //execute the stored procedure
             DB.Execute("sproc_tblStaff_FilterByAddressNo");
             //if one record is found (there should be either one or zero)
@@ -149,12 +213,12 @@ namespace ClassLibrary
             {
 
 
-                mStaffId = Convert.ToInt32(DB.DataTable.Rows[0]["StaffId"]);
+                mStaffNo = Convert.ToString(DB.DataTable.Rows[0]["StaffId"]);
                 mStartDate = Convert.ToDateTime(DB.DataTable.Rows[0]["StartDate"]);
                 mRole = Convert.ToString(DB.DataTable.Rows[0]["Role"]);
                 mDepartment = Convert.ToString(DB.DataTable.Rows[0]["Department"]);
                 mUpdateCatalogue = Convert.ToBoolean(DB.DataTable.Rows[0]["UpdateCatalogue"]);
-                mStaffWage = Convert.ToInt32(DB.DataTable.Rows[0]["Wage"]);
+                mStaffWage = Convert.ToString(DB.DataTable.Rows[0]["Wage"]);
                 mActive = Convert.ToBoolean(DB.DataTable.Rows[0]["Active"]);
                 mName = Convert.ToString(DB.DataTable.Rows[0]["Name"]);
                 //return that everything worked okay
@@ -165,9 +229,9 @@ namespace ClassLibrary
 
             }
             return false;
-            }*/
+            }
         }
 
 
     }
-}
+
