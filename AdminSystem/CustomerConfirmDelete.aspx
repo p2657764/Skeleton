@@ -8,7 +8,13 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div style="height: 1080px; width: 1920px; background-color: #CBE1EF;">
+            <asp:Label ID="lblDeleteRecordConfirmation" runat="server" Text="Are you sure you want to delete this record?" style="font-size: large"></asp:Label>
+            <br />
+            <br />
+            <asp:Button ID="btnYes" runat="server" OnClick="btnYes_Click" Text="Yes" style="font-size: medium" />
+&nbsp;
+            <asp:Button ID="btnNo" runat="server" OnClick="btnNo_Click" Text="No" style="font-size: medium" />
         </div>
     </form>
 </body>
